@@ -1,0 +1,157 @@
+---
+import { Image } from "astro:assets";
+import edificioUad from "../assets/images/main-page/edificio-uad.jpg";
+
+interface Stat {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  title?: string;
+  paragraphs?: string[];
+  stats?: Stat[];
+  image?: ImageMetadata;
+  imageAlt?: string;
+}
+
+const {
+  title = "Nuestra Universidad",
+  paragraphs = [
+    "Bienvenidos a este espacio de información, donde la UD quiere mostrar al mundo parte de su imagen y proyecto educativo.",
+    'Quienes pertenecemos a "Lobos" estamos comprometidos a brindar el máximo de nuestros esfuerzos para lograr hacer de esta institución una opción de excelencia, basada en valores y principios que nuestros docentes imprimen en cada una de sus cátedras.',
+    "Somos formadores de Hombres Líderes comprometidos con su profesión, que aman a su país y creen firmemente en el desarrollo de su sociedad.",
+    "El Proyecto Lobos, gracias a su aceptación y reconocimiento ofrece sus estudios en 28 campus. Esperamos que nos visiten muy seguido y que formen parte del proyecto Lobos, sinceramente.",
+  ],
+  stats = [
+    { value: "+ 28", label: "CAMPUS" },
+    { value: "+ 10", label: "ESCUELAS DE MEDICINA" },
+    { value: "+ 30k", label: "EGRESADOS" },
+  ],
+  image = edificioUad,
+  imageAlt = "Edificio UAD Monterrey",
+} = Astro.props;
+---
+
+<section class="university">
+  <div class="container">
+    <div class="university__grid">
+      <div class="university__text">
+        <h2 class="university__title">{title}</h2>
+        {paragraphs.map((p) => <p class="university__paragraph">{p}</p>)}
+        <div class="university__stats">
+          {
+            stats.map((stat) => (
+              <div class="university__stat">
+                <span class="university__stat-value">{stat.value}</span>
+                <span class="university__stat-label">{stat.label}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <div class="university__image-wrapper">
+        <Image
+          src={image}
+          alt={imageAlt}
+          width={600}
+          densities={[1, 2]}
+          class="university__image"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .university {
+    padding: 5rem 0;
+    background: var(--color-white);
+  }
+
+  .university__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .university__title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-gray-800);
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .university__title::after {
+    content: "";
+    display: block;
+    width: 130px;
+    height: 3px;
+    background: var(--color-black);
+    margin-top: 0.5rem;
+    border-radius: 2px;
+  }
+
+  .university__paragraph {
+    font-size: 0.95rem;
+    line-height: 1.2;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+  }
+
+  .university__stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 2rem;
+  }
+
+  .university__stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .university__stat-value {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--color-gray-800);
+    line-height: 1.2;
+  }
+
+  .university__stat-label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--color-text);
+    letter-spacing: 0.05em;
+  }
+
+  .university__image-wrapper {
+    position: relative;
+  }
+
+  .university__image {
+    width: 85%;
+    height: auto;
+    justify-self: flex-end;
+    border-radius: 4px;
+    box-shadow: 0 8px 30px var(--color-shadow);
+    display: block;
+  }
+
+  @media (max-width: 900px) {
+    .university__grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .university__image-wrapper {
+      order: -1;
+    }
+
+    .university__stats {
+      gap: 1.5rem;
+    }
+  }
+</style>

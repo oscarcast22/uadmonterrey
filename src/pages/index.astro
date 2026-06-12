@@ -1,17 +1,40 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import NuestraUniversidad from '../components/NuestraUniversidad.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+import heroImage from '../assets/images/main-page/main-hero.jpg';
+import bannerImage from '../assets/images/main-page/baner.jpg';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="UAD Monterrey - Universidad de Durango">
+  <Hero
+    backgroundImage={heroImage}
+    title="Forja tu futuro con excelencia académica"
+    links={[
+      { text: 'Inscripciones Abiertas', href: '#contacto', variant: 'primary' },
+      { text: 'Explora Carreras', href: '#carreras', variant: 'secondary' },
+    ]}
+  />
+
+  <div class="page-content">
+    <NuestraUniversidad />
+
+    <CtaBanner
+      backgroundImage={bannerImage}
+      title="Tu excelencia empieza aquí."
+      subtitle="Únete a la próxima generación de líderes y descubre por qué somos la elección número uno para los estudiantes más ambiciosos del país."
+      buttonText="Hablar con un Asesor"
+      buttonHref="#contacto"
+    />
+
+    <ContactForm />
+  </div>
+
+  <Footer />
+</BaseLayout>
+
+
+

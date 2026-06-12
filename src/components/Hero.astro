@@ -1,0 +1,245 @@
+---
+import { Image } from "astro:assets";
+
+interface HeroLink {
+  text: string;
+  href: string;
+  variant?: "primary" | "secondary";
+}
+
+interface Props {
+  backgroundImage?: ImageMetadata;
+  title: string;
+  subtitle?: string;
+  links?: HeroLink[];
+}
+
+const { backgroundImage, title, subtitle, links = [] } = Astro.props;
+---
+
+<section class="hero">
+  {
+    backgroundImage && (
+      <div class="hero__bg">
+        <Image
+          src={backgroundImage}
+          alt=""
+          width={1920}
+          height={800}
+          densities={[1, 2]}
+          class="hero__image"
+          loading="eager"
+        />
+      </div>
+    )
+  }
+  <div class="hero__overlay"></div>
+  <div class="hero__content">
+    <div class="hero__branding">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 164 43"
+        width="120"
+        height="32"
+        class="hero__logo"
+      >
+        <path
+          class="hero__logo-icon"
+          d="M21.87.46C10.32.46.97,9.82.97,21.36s9.35,20.89,20.89,20.89,20.89-9.35,20.89-20.89S33.4.46,21.87.46ZM28.96,7.21c-1.52,1.86-.91,3.66-.23,5.46-.39-.11-.78-.22-1.17-.33-.18-1.06-.56-2.1-.14-3.22-.84-.18-1.17.53-1.53,1.18-.05-.47-.09-.95-.14-1.43.7-.72,1.77-1.27,3.21-1.67ZM34.69,24.59c-8.86.48-13.32,3.7-15.25,12.05-2.28-2.99-3.79-6.1.03-10-1.01,2.18-1.52,4.39-.65,6.69,3.94-7.44,8.1-8.57,15.55-9.66.75-.15,2.09-1.27,2.68-3.07-.42-.1-.89-.43-1.53-1.26.17-.23.28-.3.75-.55-1.8-.91-3.59-1.82-5.38-2.73-1.33-2.13-3.87-2.71-7.24-2.23.89-.55,1.1-1.28,1-2.1.1-1.01-.17-2.05-.6-3.1-.79.87-1.14,1.75-1.05,2.63.13.74-.22,1.44.04,1.71-.46-.31-.07-1.45-1.42-1.46.65-1.22,1.24-2.02,1.9-3.24-.97.72-1.94,1.39-2.8,3.22-.09,1.25.68,2.12,1.4,3.02-2.04-1.72-6.33-3.32-9.55-2.82.82.46,2.34,1.01,3.19,1.75-3.2.01-7.91,1.95-8.11,4.41,2.93-.44,7.22-.58,9.64.43.76-.9,1.96-1.82,3.81-2.67.08-.52-.34-1-1.09-1.44,2.12.5,4.25,1.01,6.37,1.51-.06-.23-.13-.46-.19-.69,1.84.16,2.17.71,3.25,1.19-.29.34-.52.45-.67.34.27.59,1.06,1.15,1.99,1.69,0,0,0,0,0,0h0s0,0,0,0c-2.31-.93-7.97-2.54-7.99-2.13-5.86,1.07-2.5,5.71,3.31,5.38-1.27.35-1.89,1.12-5.07.26-1.87.39.33,2.59.82,3.68-.96-.91-3.88-1.86-2.94-4.83-.89-.64-1.77-.57-2.59,1.97.86.33,1.69.8,2.47,1.46-3.28.98-6.2,4.98-7.28,8.91.07-2.19,1.23-4.64,2.41-6.65-5.42,1.57-6.42,3.87-8.3,6.03,1.4-3.21,3.43-5.82,7.07-8.65-.77-.61-2.84-1.33-4.45-1.22,2.92-.55,5.56-.78,7.91.05-.14-.68-.31-2.14.84-3.75-3.07-.73-7.92-.79-11.89,1.3,1.03-3.5,3.69-5.55,7.78-6.99.15-.55-1.14-.9-3.26-1.05,5.73-2.22,9.72-1.3,10.59-.61,1.3-2.38,2.16-3.66,4.14-5.28.29,1.9.9,3.77.95,5.69,2.72.94,4.91,2.18,6.68,3.66,4.88,2.79,4.66,2.16,6.4,2.84,1.53.93-2.37,5.86-3.64,6.32Z"
+        ></path>
+        <g class="hero__logo-text">
+          <path
+            d="M54.84,2.85h1.76v30.73h10.96v6.05h-19.09V2.85h6.36Z"></path>
+          <path
+            d="M87.76,5.26c2.14,1.59,3.21,3.51,3.21,5.76v20.47c0,2.23-1.07,4.15-3.21,5.76-2.14,1.59-4.71,2.39-7.73,2.39s-5.62-.8-7.73-2.39c-2.14-1.59-3.21-3.51-3.21-5.76V11.02c0-2.26,1.07-4.18,3.21-5.76,2.12-1.61,4.7-2.41,7.73-2.41s5.57.8,7.73,2.41ZM78.05,9.54c-.55.41-.82.9-.82,1.48v20.47c0,.58.28,1.07.82,1.48.57.41,1.23.61,1.99.61s1.37-.2,1.96-.61c.55-.41.82-.9.82-1.48V11.02c0-.58-.28-1.07-.82-1.48-.55-.41-1.2-.61-1.96-.61s-1.44.21-1.99.61Z"
+          ></path>
+          <path
+            d="M115.8,27.21v3.43c0,2.5-1.18,4.61-3.55,6.35-2.37,1.76-5.21,2.65-8.52,2.65h-9.77V2.85h9.2c3.31,0,6.16.88,8.52,2.65,2.37,1.75,3.55,3.87,3.55,6.37v3.41c0,2.39-1.69,4.39-3.35,5.76,1.65,1.42,3.92,3.76,3.92,6.18ZM103.45,8.93h-1.36v9.29h1.36c2.14,0,3.95-1.35,3.95-2.94v-3.41c0-1.59-1.81-2.94-3.95-2.94ZM103.73,24.27h-1.65v9.31h1.65c2.14,0,3.95-1.35,3.95-2.94v-3.43c0-1.59-1.81-2.94-3.95-2.94Z"
+          ></path>
+          <path
+            d="M136.57,5.26c2.14,1.59,3.21,3.51,3.21,5.76v20.47c0,2.23-1.07,4.15-3.21,5.76-2.14,1.59-4.71,2.39-7.73,2.39s-5.62-.8-7.73-2.39c-2.14-1.59-3.21-3.51-3.21-5.76V11.02c0-2.26,1.07-4.18,3.21-5.76,2.12-1.61,4.7-2.41,7.73-2.41s5.57.8,7.73,2.41ZM126.86,9.54c-.55.41-.82.9-.82,1.48v20.47c0,.58.28,1.07.82,1.48.57.41,1.23.61,1.99.61s1.37-.2,1.96-.61c.55-.41.82-.9.82-1.48V11.02c0-.58-.28-1.07-.82-1.48-.55-.41-1.2-.61-1.96-.61s-1.44.21-1.99.61Z"
+          ></path>
+          <path
+            d="M152.83,39.64c-5.96,0-10.54-3.65-10.54-8.15v-3.89h7.84v3.89c0,1.17,1.21,2.1,2.7,2.1,1.34,0,2.33-.91,2.33-2.1v-1.93c0-2.01-2.26-3.36-3.38-4.4-2.22-2.05-5.85-4.38-7.22-5.8-1.62-1.69-2.48-4.27-2.56-5.57l-.11-2.77c0-4.51,4.86-8.17,10.82-8.17s10.28,3.63,10.28,8.17v3.87h-7.84v-3.87c0-1.16-.97-2.1-2.33-2.1-1.53,0-2.7.95-2.7,2.1v1.55c.02.63.6,2.16,1.36,2.98,1.3,1.4,3.23,2.45,4.15,3.15,3.21,2.48,4.52,3.29,5.54,4.66,1.25,1.67,2.07,3.83,2.07,5.31l.03,2.81c0,4.57-4.53,8.15-10.45,8.15Z"
+          ></path>
+        </g>
+      </svg>
+    </div>
+    <h1 class="hero__title">{title}</h1>
+    {subtitle && <p class="hero__subtitle">{subtitle}</p>}
+    {
+      links.length > 0 && (
+        <div class="hero__links">
+          {links.map((link) => (
+            <a
+              href={link.href}
+              class:list={[
+                "hero__link",
+                link.variant === "secondary"
+                  ? "hero__link--secondary"
+                  : "hero__link--primary",
+              ]}
+            >
+              {link.text}
+            </a>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    max-height: 800px;
+    z-index: 0;
+    overflow: hidden;
+    background: var(--color-dark);
+  }
+
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .hero__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.35) 0%,
+      rgba(0, 0, 0, 0.25) 40%,
+      rgba(0, 0, 0, 0.55) 100%
+    );
+  }
+
+  .hero__branding {
+    position: absolute;
+    top: 1.25rem;
+    left: 2rem;
+    z-index: 1;
+    background: var(--color-white);
+    border-radius: 50px;
+    padding: 0.5rem 1.25rem;
+    box-shadow: 0 2px 12px var(--color-shadow);
+  }
+
+  .hero__branding svg {
+    display: block;
+    height: 32px;
+    width: auto;
+  }
+
+  .hero__logo-icon {
+    fill: var(--color-primary);
+  }
+
+  .hero__logo-text path {
+    fill: var(--color-text);
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .hero__title {
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 600;
+    color: var(--color-white);
+    line-height: 1.15;
+    max-width: 700px;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 20px var(--color-shadow);
+  }
+
+  .hero__subtitle {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: color-mix(in srgb, var(--color-white) 90%, transparent);
+    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .hero__links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .hero__link {
+    display: inline-block;
+    padding: 0.15rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    text-align: center;
+    border: 2px solid transparent;
+  }
+
+  .hero__link--primary {
+    background: var(--color-hero-btn);
+    color: var(--color-white);
+    border-color: var(--color-hero-btn);
+  }
+
+  .hero__link--primary:hover {
+    background: color-mix(in srgb, var(--color-hero-btn) 80%, black);
+    border-color: color-mix(in srgb, var(--color-hero-btn) 80%, black);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px var(--color-shadow);
+  }
+
+  .hero__link--secondary {
+    background: var(--color-white);
+    color: var(--color-hero-btn);
+    border-color: var(--color-white);
+  }
+
+  .hero__link--secondary:hover {
+    background: var(--color-gray-100);
+    color: color-mix(in srgb, var(--color-hero-btn) 80%, black);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px var(--color-shadow);
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      max-height: 600px;
+    }
+
+    .hero__content {
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero__title {
+      max-width: 100%;
+    }
+
+    .hero__subtitle {
+      max-width: 100%;
+    }
+  }
+</style>

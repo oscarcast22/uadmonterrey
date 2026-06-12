@@ -1,0 +1,30 @@
+---
+import '../styles/global.css';
+import '@fontsource-variable/montserrat';
+
+interface Props {
+  title: string;
+  description?: string;
+  primaryColor?: string;
+}
+
+const {
+  title,
+  description = 'Universidad de Durango - Campus Monterrey',
+  primaryColor = '#c10230',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" style={`--color-primary: ${primaryColor};`}>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
