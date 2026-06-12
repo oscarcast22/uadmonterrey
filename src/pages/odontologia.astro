@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Footer from '../components/Footer.astro';
+
+const primaryColor = '#0ea5e9';
+---
+
+<BaseLayout title="Odontología - UAD Monterrey" primaryColor={primaryColor}>
+  <Hero
+    title="Odontología: Sonrisas que transforman vidas"
+    subtitle="Formamos profesionales de la salud bucal con excelencia clínica, tecnología de vanguardia y compromiso humano."
+    links={[
+      { text: 'Iniciar Proceso de Admisión', href: '#contacto', variant: 'primary' },
+      { text: 'Explorar Plan de Estudios', href: '#plan', variant: 'secondary' },
+    ]}
+  />
+
+  <div class="page-content">
+    <section class="placeholder-section">
+      <div class="container">
+        <h2>Contenido en desarrollo</h2>
+        <p>Esta página está en construcción. Pronto encontrarás información completa sobre la Licenciatura en Odontología.</p>
+      </div>
+    </section>
+  </div>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .placeholder-section {
+    padding: 5rem 0;
+    text-align: center;
+  }
+
+  .placeholder-section h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  .placeholder-section p {
+    color: var(--color-gray-600);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+</style>
