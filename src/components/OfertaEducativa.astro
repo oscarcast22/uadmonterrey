@@ -1,0 +1,275 @@
+---
+interface Carrera {
+  nombre: string;
+  pdf: string;
+}
+
+interface Area {
+  nombre: string;
+  colorVar: string;
+  carreras: Carrera[];
+}
+
+const areas: Area[] = [
+  {
+    nombre: 'Salud',
+    colorVar: '--color-salud',
+    carreras: [
+      { nombre: 'Enfermería', pdf: '/planes-de-estudio/salud/enfermeria.pdf' },
+      { nombre: 'Fisioterapia', pdf: '/planes-de-estudio/salud/fisioterapia.pdf' },
+      { nombre: 'Medicina General', pdf: '/planes-de-estudio/salud/medicina-general.pdf' },
+      { nombre: 'Nutrición', pdf: '/planes-de-estudio/salud/nutricion.pdf' },
+      { nombre: 'Odontología', pdf: '/planes-de-estudio/salud/odontologia.pdf' },
+      { nombre: 'Psicología', pdf: '/planes-de-estudio/salud/psicologia.pdf' },
+    ],
+  },
+  {
+    nombre: 'Ing. y Tecnología',
+    colorVar: '--color-ing-tecnologia',
+    carreras: [
+      { nombre: 'Ing. Biomédica', pdf: '/planes-de-estudio/ingenieria/ing-biomedica.pdf' },
+      { nombre: 'Ing. Inteligencia Artificial y Seguridad de Software', pdf: '/planes-de-estudio/ingenieria/ing-ia-seguridad.pdf' },
+      { nombre: 'Ing. Seguridad Industrial y Laboral', pdf: '/planes-de-estudio/ingenieria/ing-seguridad-industrial.pdf' },
+      { nombre: 'Ing. Industrial', pdf: '/planes-de-estudio/ingenieria/ing-industrial.pdf' },
+    ],
+  },
+  {
+    nombre: 'Comercio',
+    colorVar: '--color-comercio',
+    carreras: [
+      { nombre: 'Administración de Negocios', pdf: '/planes-de-estudio/comercio/administracion-negocios.pdf' },
+    ],
+  },
+  {
+    nombre: 'Bienestar',
+    colorVar: '--color-bienestar',
+    carreras: [
+      { nombre: 'Cosmetología', pdf: '/planes-de-estudio/bienestar/cosmetologia.pdf' },
+    ],
+  },
+];
+---
+
+<section class="oferta" id="oferta-educativa">
+  <div class="oferta__container">
+    <h2 class="oferta__title">Oferta Educativa</h2>
+
+    <div class="oferta__areas">
+      {areas.map((area) => (
+        <div
+          class={`oferta__area${area.carreras.length <= 3 ? ' oferta__area--few' : ''}`}
+          style={`--area-color: var(${area.colorVar})`}
+        >
+          <span class="oferta__badge" style={`background-color: var(${area.colorVar})`}>
+            {area.nombre}
+          </span>
+          <div class="oferta__carreras">
+            {area.carreras.map((carrera) => (
+              <a class="oferta__link" href={carrera.pdf} download>
+                {carrera.nombre}
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .oferta {
+    background-color: var(--color-gray-100);
+    padding: 5rem 1.5rem;
+  }
+
+  .oferta__container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .oferta__title {
+    text-align: center;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 300;
+    color: var(--color-gray-400);
+    margin-bottom: 2.5rem;
+  }
+
+  .oferta__areas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px 32px;
+  }
+
+  .oferta__area {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .oferta__badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 1.5rem;
+    color: var(--color-white);
+    font-size: 1rem;
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .oferta__carreras {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.375rem 1rem;
+  }
+
+  .oferta__link {
+    color: var(--color-gray-600);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+    max-width: 220px;
+    line-height: 1.3;
+  }
+
+  .oferta__link:hover {
+    color: var(--color-gray-900);
+    text-decoration: underline;
+  }
+
+  /* Tablet: reducción proporcional gradual */
+  @media (max-width: 900px) {
+    .oferta {
+      padding: 4rem 1.25rem;
+    }
+
+    .oferta__title {
+      margin-bottom: 2rem;
+    }
+
+    .oferta__areas {
+      gap: 16px 24px;
+    }
+
+    .oferta__area {
+      gap: 0.75rem;
+    }
+
+    .oferta__badge {
+      font-size: clamp(0.8125rem, 1.8vw, 1rem);
+      padding: 0.45rem 0.9rem;
+    }
+
+    .oferta__carreras {
+      gap: 0.3rem 0.875rem;
+    }
+
+    .oferta__link {
+      font-size: clamp(0.75rem, 1.6vw, 0.95rem);
+      max-width: 180px;
+    }
+  }
+
+  /* Tablet pequeña */
+  @media (max-width: 768px) {
+    .oferta {
+      padding: 3rem 1rem;
+    }
+
+    .oferta__areas {
+      gap: 12px 18px;
+    }
+
+    .oferta__area {
+      gap: 0.6rem;
+    }
+
+    .oferta__badge {
+      font-size: 0.8125rem;
+      padding: 0.4rem 0.8rem;
+    }
+
+    .oferta__carreras {
+      gap: 0.25rem 0.75rem;
+    }
+
+    .oferta__link {
+      font-size: 0.75rem;
+      max-width: 160px;
+    }
+  }
+
+  /* Mobile: gradiente sutil + badge a medio camino */
+  @media (max-width: 670px) {
+    .oferta {
+      padding: 2.5rem 1rem;
+    }
+
+    .oferta__title {
+      font-size: clamp(1.5rem, 5vw, 1.875rem);
+      margin-bottom: 1.75rem;
+    }
+
+    .oferta__areas {
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .oferta__area {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.25rem 1rem 1.5rem;
+      border-radius: 0.75rem;
+      background-color: color-mix(in srgb, var(--area-color) 8%, var(--color-gray-100));
+    }
+
+    .oferta__area:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      bottom: -3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 3rem;
+      background: linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--area-color) 30%, transparent),
+        color-mix(in srgb, var(--area-color) 10%, transparent)
+      );
+    }
+
+    .oferta__badge {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 0.8125rem;
+      padding: 0.375rem 0.875rem;
+    }
+
+    .oferta__carreras {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.5rem 1rem;
+      width: 100%;
+      margin-top: 0.25rem;
+    }
+
+    .oferta__area--few .oferta__carreras {
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+
+    .oferta__link {
+      font-size: 0.8125rem;
+      max-width: none;
+      line-height: 1.4;
+      text-align: center;
+    }
+  }
+</style>
