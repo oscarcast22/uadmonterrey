@@ -10,16 +10,22 @@
   --color-primary: #c10230;
   --color-primary-dark: #9a0226;
   --color-hero-btn: #c1272d;
-  --color-dark: #1a1a1a;
-  --color-black: #000000;
-  --color-gray-100: #f5f5f5;
-  --color-gray-200: #e5e5e5;
-  --color-gray-400: #9ca3af;
-  --color-gray-600: #4b5563;
-  --color-gray-800: #1f2937;
-  --color-text: #333333;
   --color-white: #ffffff;
+  --color-black: #000000;
   --color-shadow: rgba(0, 0, 0, 0.15);
+  --color-gray-100: #f7f7f7;
+  --color-gray-200: #e5e5e5;
+  --color-gray-400: #999999;
+  --color-gray-600: #4d4d4d;
+  --color-gray-800: #333333;
+  --color-gray-900: #1a1a1a;
+
+  /* Oferta Educativa */
+  --color-salud: #3cb4e5;
+  --color-ing-tecnologia: #77777a;
+  --color-comercio: #00953b;
+  --color-bienestar: #923a7f;
+
   --font-sans: 'Montserrat Variable', 'Montserrat', system-ui, -apple-system, sans-serif;
   --hero-height: min(100vh, 800px);
 }
@@ -65,4 +71,10 @@ button {
   z-index: 1;
   margin-top: var(--hero-height);
   background: var(--color-white);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --hero-height: min(100vh, 600px);
+  }
 }
