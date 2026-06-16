@@ -1,11 +1,13 @@
 ---
-import { areas } from '../data/ofertaEducativa';
+import { areas as allAreas } from '../data/ofertaEducativa';
+import type { Area } from '../data/ofertaEducativa';
 
 interface Props {
   email?: string;
   phone?: string;
   address?: string;
   description?: string;
+  areas?: Area[];
 }
 
 const {
@@ -13,6 +15,7 @@ const {
   phone = '81 1919 5252',
   address = 'Calle Padre Mier y Cuauhtémoc',
   description = 'Resuelve todas tus dudas. Un asesor de admisiones se pondrá en contacto contigo a la brevedad.',
+  areas = allAreas,
 } = Astro.props;
 ---
 

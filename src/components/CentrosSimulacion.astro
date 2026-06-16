@@ -1,0 +1,153 @@
+---
+import { Image } from 'astro:assets';
+import labMecanoterapia from '../assets/images/escuela_de_medicina/lab-mecanoterapia.jpg';
+import anatomage from '../assets/images/escuela_de_medicina/anatomage.jpg';
+import camaraGessel from '../assets/images/escuela_de_medicina/camara-gessel.jpg';
+
+interface Centro {
+  nombre: string;
+  imagen: ImageMetadata;
+}
+
+const centros: Centro[] = [
+  { nombre: 'Lab. Mecanoterapia', imagen: labMecanoterapia },
+  { nombre: 'Anatomage', imagen: anatomage },
+  { nombre: 'Camara Gessel', imagen: camaraGessel },
+];
+---
+
+<section class="simulacion">
+  <div class="simulacion__container">
+    <h2 class="simulacion__title">Centros de Simulación</h2>
+    <p class="simulacion__subtitle">
+      Contamos con laboratorios de simulación de alta fidelidad, donde nuestros estudiantes practican escenarios
+      clínicos críticos en un entorno seguro y controlado, reduciendo la brecha entre la teoría y la práctica real.
+    </p>
+    <div class="simulacion__grid">
+      {centros.map((centro) => (
+        <div class="simulacion__card">
+          <div class="simulacion__image-wrapper">
+            <Image
+              src={centro.imagen}
+              alt={centro.nombre}
+              width={400}
+              height={300}
+              densities={[1, 2]}
+              class="simulacion__image"
+              loading="lazy"
+            />
+            <div class="simulacion__overlay"></div>
+            <h3 class="simulacion__card-title">{centro.nombre}</h3>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .simulacion {
+    background: var(--color-gray-100);
+    padding: 6rem 2rem;
+  }
+
+  .simulacion__container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .simulacion__title {
+    text-align: center;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 600;
+    color: var(--color-salud);
+    margin-bottom: 1rem;
+  }
+
+  .simulacion__subtitle {
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--color-gray-800);
+    max-width: 900px;
+    font-weight: 500;
+    margin: 0 auto 3rem;
+    line-height: 1.2;
+  }
+
+  .simulacion__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3.5rem;
+  }
+
+  .simulacion__card {
+    border-radius: 20px;
+    overflow: hidden;
+  }
+
+  .simulacion__image-wrapper {
+    position: relative;
+    aspect-ratio: 4 / 4;
+    overflow: hidden;
+    border-radius: 20px;
+  }
+
+  .simulacion__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.8;
+  }
+
+  .simulacion__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(60, 180, 229, 0.8) 0%,
+      rgba(60, 180, 229, 0.3) 40%,
+      transparent 65%
+    );
+  }
+
+  .simulacion__card-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--color-white);
+    text-align: center;
+    z-index: 1;
+  }
+
+  @media (max-width: 900px) {
+    .simulacion {
+      padding: 4rem 1.5rem;
+    }
+
+    .simulacion__grid {
+      gap: 1.25rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .simulacion {
+      padding: 3rem 1rem;
+    }
+
+    .simulacion__subtitle {
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    .simulacion__grid {
+      grid-template-columns: 1fr;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+  }
+</style>

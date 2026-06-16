@@ -1,0 +1,182 @@
+---
+import { Image } from 'astro:assets';
+import enfermeria from '../assets/images/escuela_de_medicina/enfermeria.jpg';
+import fisioterapia from '../assets/images/escuela_de_medicina/fisioterapia.jpg';
+import nutricion from '../assets/images/escuela_de_medicina/nutricion.jpg';
+import psicologia from '../assets/images/escuela_de_medicina/psicologia.jpg';
+
+interface Licenciatura {
+  nombre: string;
+  imagen: ImageMetadata;
+  pdf: string;
+}
+
+const licenciaturas: Licenciatura[] = [
+  { nombre: 'Enfermería', imagen: enfermeria, pdf: '/planes-de-estudio/salud/enfermeria.pdf' },
+  { nombre: 'Fisioterapia', imagen: fisioterapia, pdf: '/planes-de-estudio/salud/fisioterapia.pdf' },
+  { nombre: 'Nutrición', imagen: nutricion, pdf: '/planes-de-estudio/salud/nutricion.pdf' },
+  { nombre: 'Psicología', imagen: psicologia, pdf: '/planes-de-estudio/salud/psicologia.pdf' },
+];
+---
+
+<section class="licenciaturas">
+  <div class="licenciaturas__container">
+    <h2 class="licenciaturas__title">Nuestras Licenciaturas</h2>
+    <div class="licenciaturas__grid">
+      {licenciaturas.map((lic) => (
+        <a class="licenciaturas__card" href={lic.pdf} download>
+          <div class="licenciaturas__image-wrapper">
+            <Image
+              src={lic.imagen}
+              alt={lic.nombre}
+              width={400}
+              height={500}
+              densities={[1, 2]}
+              class="licenciaturas__image"
+              loading="lazy"
+            />
+            <div class="licenciaturas__overlay"></div>
+            <div class="licenciaturas__card-content">
+              <h3 class="licenciaturas__card-title">{lic.nombre}</h3>
+              <span class="licenciaturas__card-link">Ver plan de estudios</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .licenciaturas {
+    background: var(--color-white);
+    padding: 5rem 2rem;
+  }
+
+  .licenciaturas__container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .licenciaturas__title {
+    font-size: clamp(1.5rem, 2.5vw, 1.85rem);
+    font-weight: 550;
+    color: #6dc8e8;
+    margin-bottom: 2rem;
+  }
+
+  .licenciaturas__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+
+  .licenciaturas__card {
+    display: block;
+    text-decoration: none;
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .licenciaturas__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .licenciaturas__image-wrapper {
+    position: relative;
+    aspect-ratio: 3 / 4.5;
+    overflow: hidden;
+  }
+
+  .licenciaturas__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .licenciaturas__overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        to top,
+        rgba(60, 180, 229, 0.8) 0%,
+        rgba(60, 180, 229, 0.35) 35%,
+        transparent 60%
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.25) 0%,
+        rgba(255, 255, 255, 0.08) 50%,
+        transparent 100%
+      );
+  }
+
+  .licenciaturas__card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.25rem 1.5rem;
+    z-index: 1;
+  }
+
+  .licenciaturas__card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-white);
+    line-height: 1.1;
+  }
+
+  .licenciaturas__card-link {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: color-mix(in srgb, var(--color-white) 85%, transparent);
+  }
+
+  @media (max-width: 900px) {
+    .licenciaturas {
+      padding: 4rem 1.5rem;
+    }
+
+    .licenciaturas__grid {
+      gap: 0.875rem;
+    }
+
+    .licenciaturas__card-title {
+      font-size: 0.95rem;
+    }
+
+    .licenciaturas__card-link {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .licenciaturas {
+      padding: 3rem 1rem;
+    }
+
+    .licenciaturas__title {
+      margin-bottom: 1.5rem;
+    }
+
+    .licenciaturas__grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .licenciaturas__card-content {
+      padding: 1rem;
+    }
+
+    .licenciaturas__card-title {
+      font-size: 0.85rem;
+    }
+  }
+</style>
