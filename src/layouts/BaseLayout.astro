@@ -6,17 +6,19 @@ interface Props {
   title: string;
   description?: string;
   primaryColor?: string;
+  heroBtnColor?: string;
 }
 
 const {
   title,
   description = 'Universidad de Durango - Campus Monterrey',
   primaryColor = '#c10230',
+  heroBtnColor = '#c1272d',
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es" style={`--color-primary: ${primaryColor};`}>
+<html lang="es" style={`--color-primary: ${primaryColor}; --color-hero-btn: ${heroBtnColor};`}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

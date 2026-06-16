@@ -8,6 +8,7 @@ interface Props {
   buttonText?: string;
   buttonHref?: string;
   overlayOpacity?: number;
+  overlayColor?: string;
 }
 
 const {
@@ -17,6 +18,7 @@ const {
   buttonText = 'Hablar con un Asesor',
   buttonHref = '#contacto',
   overlayOpacity = 0.5,
+  overlayColor = '0, 0, 0',
 } = Astro.props;
 ---
 
@@ -32,7 +34,7 @@ const {
       loading="lazy"
     />
   </div>
-  <div class="cta-banner__overlay" style={`--cta-overlay: ${overlayOpacity};`}></div>
+  <div class="cta-banner__overlay" style={`--cta-overlay: ${overlayOpacity}; --cta-color: ${overlayColor};`}></div>
   <div class="cta-banner__content">
     <h2 class="cta-banner__title">{title}</h2>
     {subtitle && <p class="cta-banner__subtitle">{subtitle}</p>}
@@ -63,13 +65,12 @@ const {
   .cta-banner__overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, var(--cta-overlay));
+    background: rgba(var(--cta-color), var(--cta-overlay));
   }
 
   .cta-banner__content {
     position: relative;
     z-index: 1;
-    max-width: 800px;
     margin: 0 auto;
     text-align: center;
     display: flex;
@@ -80,7 +81,7 @@ const {
 
   .cta-banner__title {
     font-size: clamp(1.8rem, 4vw, 2.8rem);
-    font-weight: 700;
+    font-weight: 650;
     color: var(--color-white);
     line-height: 1.2;
   }
@@ -88,7 +89,6 @@ const {
   .cta-banner__subtitle {
     font-size: 1.05rem;
     color: color-mix(in srgb, var(--color-white) 85%, transparent);
-    max-width: 600px;
     line-height: 1.6;
   }
 
