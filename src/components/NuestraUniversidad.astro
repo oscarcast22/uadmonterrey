@@ -3,8 +3,11 @@ import { Image } from "astro:assets";
 import edificioUad from "../assets/images/main-page/edificio-uad.jpg";
 
 interface Stat {
-  value: string;
+  value: number;
+  prefix?: string;
+  suffix?: string;
   label: string;
+  duration?: number;
 }
 
 interface Props {
@@ -24,9 +27,9 @@ const {
     "El Proyecto Lobos, gracias a su aceptación y reconocimiento ofrece sus estudios en 28 campus. Esperamos que nos visiten muy seguido y que formen parte del proyecto Lobos, sinceramente.",
   ],
   stats = [
-    { value: "+ 28", label: "CAMPUS" },
-    { value: "+ 10", label: "ESCUELAS DE MEDICINA" },
-    { value: "+ 30k", label: "EGRESADOS" },
+    { value: 28, prefix: "+ ", label: "CAMPUS", duration: 1.5 },
+    { value: 10, prefix: "+ ", label: "ESCUELAS DE MEDICINA", duration: 2 },
+    { value: 30, prefix: "+ ", suffix: "k", label: "EGRESADOS", duration: 2.5 },
   ],
   image = edificioUad,
   imageAlt = "Edificio UAD Monterrey",
@@ -43,7 +46,15 @@ const {
           {
             stats.map((stat) => (
               <div class="university__stat">
-                <span class="university__stat-value">{stat.value}</span>
+                <span
+                  class="university__stat-value"
+                  data-target={stat.value}
+                  data-prefix={stat.prefix ?? ""}
+                  data-suffix={stat.suffix ?? ""}
+                  data-duration={stat.duration ?? 2}
+                >
+                  0
+                </span>
                 <span class="university__stat-label">{stat.label}</span>
               </div>
             ))
@@ -118,6 +129,7 @@ const {
     font-weight: 600;
     color: var(--color-gray-800);
     line-height: 1.2;
+    opacity: 0;
   }
 
   .university__stat-label {
@@ -153,5 +165,53 @@ const {
     .university__stats {
       gap: 1.5rem;
     }
+
+    .university__image {
+      justify-self: center;
+    }
   }
 </style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const values = document.querySelectorAll<HTMLElement>(".university__stat-value");
+
+  values.forEach((el, i) => {
+    const target = parseInt(el.dataset.target ?? "0", 10);
+    const prefix = el.dataset.prefix ?? "";
+    const suffix = el.dataset.suffix ?? "";
+    const duration = parseFloat(el.dataset.duration ?? "2");
+    const obj = { value: 0 };
+    const delay = i * 0.4;
+
+    gsap.to(obj, {
+      value: target,
+      duration,
+      delay,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: el.closest(".university__stats"),
+        start: "top 80%",
+        once: true,
+      },
+      onUpdate: () => {
+        el.textContent = prefix + Math.round(obj.value) + suffix;
+      },
+    });
+
+    gsap.to(el, {
+      opacity: 1,
+      duration: 0.6,
+      delay,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: el.closest(".university__stats"),
+        start: "top 80%",
+        once: true,
+      },
+    });
+  });
+</script>
