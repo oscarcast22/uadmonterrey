@@ -1,4 +1,6 @@
 ---
+import { areas } from '../data/ofertaEducativa';
+
 interface Props {
   email?: string;
   phone?: string;
@@ -21,15 +23,15 @@ const {
       <p class="contact__description">{description}</p>
       <div class="contact__details">
         <div class="contact__detail">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           <span>{email}</span>
         </div>
         <div class="contact__detail">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           <span>{phone}</span>
         </div>
         <div class="contact__detail">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
           <span>Visítanos en {address}</span>
         </div>
       </div>
@@ -39,7 +41,32 @@ const {
         <input type="text" name="nombre" placeholder="Nombre Completo" required />
         <input type="email" name="email" placeholder="Correo Electrónico" required />
         <input type="tel" name="telefono" placeholder="Teléfono" />
-        <input type="text" name="programa" placeholder="Programa de Interés" />
+        <div class="custom-select" data-name="programa">
+          <input type="hidden" name="programa" value="" />
+          <button type="button" class="custom-select__trigger" aria-haspopup="listbox" aria-expanded="false">
+            <span class="custom-select__placeholder">Selecciona un Programa de Interés</span>
+            <span class="custom-select__value"></span>
+            <svg class="custom-select__icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <ul class="custom-select__dropdown" role="listbox">
+            {areas.map((area) => (
+              <li class="custom-select__group" role="presentation">
+                <span class="custom-select__group-label" style={`--area-color: var(${area.colorVar})`}>
+                  {area.nombre}
+                </span>
+                <ul class="custom-select__options" role="group" aria-label={area.nombre}>
+                  {area.carreras.map((carrera) => (
+                    <li class="custom-select__option" role="option" data-value={carrera.nombre} tabindex="-1">
+                      {carrera.nombre}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </div>
         <textarea name="mensaje" placeholder="Mensaje (opcional)" rows="3"></textarea>
         <button type="submit" class="contact__submit">Enviar Información</button>
         <p class="contact__privacy">Al enviar, aceptas nuestro aviso de privacidad y términos de servicio.</p>
@@ -57,72 +84,80 @@ const {
     max-width: 1100px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1.4fr;
+    grid-template-columns: 1fr 1.5fr;
     background: var(--color-white);
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: 0 8px 40px var(--color-shadow);
+    border-radius: 80px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    overflow: visible;
+  }
+
+  .contact__info {
+    border-radius: 80px 0 0 80px;
+  }
+
+  .contact__form-wrapper {
+    border-radius: 0 80px 80px 0;
   }
 
   .contact__info {
     background: var(--color-primary);
     color: var(--color-white);
-    padding: 3rem 2.5rem;
+    padding: 3rem 3.2rem 4rem 4.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
   }
 
   .contact__title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
+    font-size: 2.8rem;
+    font-weight: 550;
+    margin-bottom: 1.25rem;
   }
 
   .contact__description {
+    line-height: 1.3;
     font-size: 0.95rem;
-    line-height: 1.6;
-    opacity: 0.9;
-    margin-bottom: 2.5rem;
+    opacity: 0.92;
+    margin-bottom: 3rem;
   }
 
   .contact__details {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1.75rem;
   }
 
   .contact__detail {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    font-size: 0.9rem;
+    gap: 1rem;
+    font-size: 0.92rem;
   }
 
   .contact__detail svg {
     flex-shrink: 0;
-    opacity: 0.8;
+    opacity: 0.85;
+    width: 22px;
+    height: 22px;
   }
 
   .contact__form-wrapper {
-    padding: 3rem 2.5rem;
+    padding: 3.5rem 4rem;
   }
 
   .contact__form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.4rem;
   }
 
   .contact__form input,
   .contact__form textarea {
     width: 100%;
-    padding: 0.9rem 1.2rem;
-    border: 1px solid var(--color-gray-200);
-    border-radius: 10px;
-    font-size: 0.95rem;
+    padding: 0.7rem 1.4rem;
+    border: 1px solid transparent;
+    border-radius: 40px;
     font-family: inherit;
-    background: var(--color-gray-100);
+    background: var(--color-gray-150);
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
     outline: none;
   }
@@ -133,19 +168,198 @@ const {
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 10%, transparent);
   }
 
+  /* Custom Select */
+  .custom-select {
+    position: relative;
+    width: 100%;
+  }
+
+  .custom-select__trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0.7rem 1.4rem;
+    border: 1px solid transparent;
+    border-radius: 40px;
+    background: var(--color-gray-150);
+    font-family: inherit;
+    font-size: 0.8333rem;
+    line-height: 1.5;
+    color: var(--color-gray-600);
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    text-align: left;
+    font-weight: 650;
+  }
+
+  .custom-select__trigger:hover {
+    border-color: var(--color-gray-200);
+  }
+
+  .custom-select.is-open .custom-select__trigger,
+  .custom-select__trigger:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 10%, transparent);
+    outline: none;
+  }
+
+  .custom-select__placeholder {
+    color: var(--color-gray-600);
+    font-weight: 650;
+    opacity: 0.65;
+  }
+
+  .custom-select__value {
+    display: none;
+    color: var(--color-gray-800);
+    font-weight: 500;
+  }
+
+  .custom-select.has-value .custom-select__placeholder {
+    display: none;
+  }
+
+  .custom-select.has-value .custom-select__value {
+    display: inline;
+  }
+
+  .custom-select.has-value .custom-select__trigger {
+    color: var(--color-gray-800);
+  }
+
+  .custom-select__icon {
+    margin-left: auto;
+    flex-shrink: 0;
+    color: var(--color-gray-600);
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .custom-select.is-open .custom-select__icon {
+    transform: rotate(180deg);
+  }
+
+  .custom-select__dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: var(--color-white);
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.08);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.2s ease,
+                visibility 0.2s ease;
+    z-index: 100;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .custom-select.is-open .custom-select__dropdown {
+    max-height: 400px;
+    opacity: 1;
+    visibility: visible;
+    overflow-y: auto;
+    padding: 0.4rem 0;
+  }
+
+  .custom-select__dropdown::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-select__dropdown::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-select__dropdown::-webkit-scrollbar-thumb {
+    background: var(--color-gray-200);
+    border-radius: 3px;
+  }
+
+  .custom-select__group {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .custom-select__group + .custom-select__group {
+    border-top: 1px solid var(--color-gray-200);
+  }
+
+  .custom-select__group-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1.2rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-gray-600);
+    cursor: default;
+    position: relative;
+  }
+
+  .custom-select__group-label::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--area-color);
+    flex-shrink: 0;
+  }
+
+  .custom-select__options {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .custom-select__option {
+    padding: 0.45rem 1.2rem 0.45rem 2.2rem;
+    font-size: 0.88rem;
+    color: var(--color-gray-800);
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    border-radius: 0;
+    position: relative;
+  }
+
+  .custom-select__option:hover {
+    background: var(--color-gray-150);
+    color: var(--color-primary);
+  }
+
+  .custom-select__option.is-selected {
+    background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
   .contact__form textarea {
-    resize: vertical;
-    min-height: 80px;
+    resize: none;
+    min-height: 110px;
+    border-radius: 20px;
+  }
+
+  .contact__form input::placeholder,
+  .contact__form textarea::placeholder {
+    font-weight: 650;
+    opacity: 0.85;
   }
 
   .contact__submit {
     align-self: flex-start;
-    padding: 0.85rem 2rem;
+    padding: 1rem 2rem;
     background: var(--color-primary);
     color: var(--color-white);
     border-radius: 50px;
-    font-size: 0.95rem;
-    font-weight: 600;
+    font-size: 1.1rem;
+    font-weight: 550;
     transition: all 0.25s ease;
   }
 
@@ -156,14 +370,22 @@ const {
   }
 
   .contact__privacy {
-    font-size: 0.78rem;
+    font-size: 0.85rem;
     color: var(--color-gray-400);
-    margin-top: 0.25rem;
   }
 
   @media (max-width: 768px) {
     .contact__card {
       grid-template-columns: 1fr;
+      border-radius: 40px;
+    }
+
+    .contact__info {
+      border-radius: 40px 40px 0 0;
+    }
+
+    .contact__form-wrapper {
+      border-radius: 0 0 40px 40px;
     }
 
     .contact__info {
@@ -175,3 +397,134 @@ const {
     }
   }
 </style>
+
+<script>
+  interface CustomSelectElements {
+    select: HTMLElement;
+    trigger: HTMLButtonElement;
+    hiddenInput: HTMLInputElement;
+    valueDisplay: HTMLSpanElement;
+    options: HTMLElement[];
+  }
+
+  function getSelectElements(select: HTMLElement): CustomSelectElements | null {
+    const trigger = select.querySelector<HTMLButtonElement>('.custom-select__trigger');
+    const hiddenInput = select.querySelector<HTMLInputElement>('input[type="hidden"]');
+    const valueDisplay = select.querySelector<HTMLSpanElement>('.custom-select__value');
+    const options = Array.from(select.querySelectorAll<HTMLElement>('.custom-select__option'));
+
+    if (!trigger || !hiddenInput || !valueDisplay) return null;
+
+    return { select, trigger, hiddenInput, valueDisplay, options };
+  }
+
+  function closeAllSelects(): void {
+    document.querySelectorAll<HTMLElement>('.custom-select.is-open').forEach((s) => {
+      s.classList.remove('is-open');
+      const btn = s.querySelector<HTMLButtonElement>('.custom-select__trigger');
+      btn?.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  function toggleOpen(elements: CustomSelectElements): void {
+    const { select, trigger } = elements;
+    const isOpen = select.classList.contains('is-open');
+
+    closeAllSelects();
+
+    if (!isOpen) {
+      select.classList.add('is-open');
+      trigger.setAttribute('aria-expanded', 'true');
+      const selected = select.querySelector<HTMLElement>('.custom-select__option.is-selected');
+      selected?.scrollIntoView({ block: 'nearest' });
+    }
+  }
+
+  function closeSelect(elements: CustomSelectElements): void {
+    elements.select.classList.remove('is-open');
+    elements.trigger.setAttribute('aria-expanded', 'false');
+  }
+
+  function selectOption(elements: CustomSelectElements, option: HTMLElement): void {
+    const { select, trigger, hiddenInput, valueDisplay, options } = elements;
+    const value = option.dataset.value ?? '';
+    const text = option.textContent?.trim() ?? '';
+
+    hiddenInput.value = value;
+    valueDisplay.textContent = text;
+    select.classList.add('has-value');
+    options.forEach((o) => o.classList.remove('is-selected'));
+    option.classList.add('is-selected');
+    closeSelect(elements);
+    trigger.focus();
+  }
+
+  function handleKeydown(e: KeyboardEvent, elements: CustomSelectElements): void {
+    const { select, options } = elements;
+
+    switch (e.key) {
+      case 'Enter':
+      case ' ': {
+        e.preventDefault();
+        toggleOpen(elements);
+        break;
+      }
+      case 'Escape': {
+        closeSelect(elements);
+        break;
+      }
+      case 'ArrowDown': {
+        e.preventDefault();
+        if (!select.classList.contains('is-open')) {
+          toggleOpen(elements);
+        } else {
+          const current = select.querySelector<HTMLElement>('.custom-select__option.is-selected');
+          const idx = current ? options.indexOf(current) : -1;
+          const next = options[idx + 1] ?? options[0];
+          next?.focus();
+        }
+        break;
+      }
+      case 'ArrowUp': {
+        e.preventDefault();
+        const current = select.querySelector<HTMLElement>('.custom-select__option.is-selected');
+        const idx = current ? options.indexOf(current) : options.length;
+        const prev = options[idx - 1] ?? options[options.length - 1];
+        prev?.focus();
+        break;
+      }
+    }
+  }
+
+  function initCustomSelects(): void {
+    document.querySelectorAll<HTMLElement>('.custom-select').forEach((select) => {
+      const elements = getSelectElements(select);
+      if (!elements) return;
+
+      elements.trigger.addEventListener('click', (e: Event) => {
+        e.stopPropagation();
+        toggleOpen(elements);
+      });
+
+      elements.options.forEach((option) => {
+        option.addEventListener('click', () => selectOption(elements, option));
+      });
+
+      elements.trigger.addEventListener('keydown', (e: KeyboardEvent) => {
+        handleKeydown(e, elements);
+      });
+
+      document.addEventListener('click', (e: MouseEvent) => {
+        if (!select.contains(e.target as Node)) closeSelect(elements);
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initCustomSelects);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCustomSelects);
+  } else {
+    initCustomSelects();
+  }
+</script>
