@@ -56,8 +56,8 @@ const {
           >
             {link.platform === "facebook" && (
               <svg
-                width="22"
-                height="22"
+                width="28"
+                height="28"
                 viewBox="0 0 24 24"
                 fill="currentColor"
               >
@@ -66,8 +66,8 @@ const {
             )}
             {link.platform === "instagram" && (
               <svg
-                width="22"
-                height="22"
+                width="28"
+                height="28"
                 viewBox="0 0 24 24"
                 fill="currentColor"
               >
@@ -76,8 +76,8 @@ const {
             )}
             {link.platform === "whatsapp" && (
               <svg
-                width="22"
-                height="22"
+                width="28"
+                height="28"
                 viewBox="0 0 24 24"
                 fill="currentColor"
               >
@@ -125,12 +125,12 @@ const {
 
   .footer__social {
     display: flex;
-    gap: 1.5rem;
+    gap: 3rem;
   }
 
   .footer__social-link {
     color: var(--color-white);
-    opacity: 0.8;
+    opacity: 0.87;
     transition:
       opacity 0.2s ease,
       transform 0.2s ease;
@@ -139,23 +139,22 @@ const {
 
   .footer__social-link:hover {
     opacity: 1;
-    transform: translateY(-2px);
   }
 
   .footer__bottom {
     text-align: center;
     font-size: 0.82rem;
-    opacity: 0.6;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    opacity: 0.87;
   }
 
   .footer__privacy {
     color: var(--color-white);
     text-decoration: underline;
-    opacity: 0.7;
     transition: opacity 0.2s ease;
+    opacity: 0.8;
   }
 
   .footer__privacy:hover {
