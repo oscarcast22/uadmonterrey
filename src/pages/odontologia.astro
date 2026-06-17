@@ -1,48 +1,76 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import ClinicSection from '../components/ClinicSection.astro';
+import DownloadBanner from '../components/DownloadBanner.astro';
+import LabsSection from '../components/LabsSection.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
+import heroImage from '../assets/images/odontologia/hero_odontologia.jpg';
+import clinicaImage from '../assets/images/odontologia/clinica-odontologica.jpg';
+import labsImage from '../assets/images/odontologia/laboratorios-especialidad.jpg';
+import bannerImage from '../assets/images/escuela_de_medicina/banner-cta.jpg';
 
-const primaryColor = '#0ea5e9';
+const primaryColor = '#3cb4e5';
 ---
 
-<BaseLayout title="Odontología - UAD Monterrey" primaryColor={primaryColor}>
+<BaseLayout
+  title="Odontología - UAD Monterrey"
+  primaryColor={primaryColor}
+  heroBtnColor={primaryColor}
+  heroHeightMobile="min(100vh, 750px)"
+>
   <Hero
-    title="Odontología: Sonrisas que transforman vidas"
-    subtitle="Formamos profesionales de la salud bucal con excelencia clínica, tecnología de vanguardia y compromiso humano."
+    backgroundImage={heroImage}
+    title="Transforma vidas a través de la salud bucal, con excelencia clínica, innovación y compromiso humano."
+    subtitle="Desarrolla los conocimientos científicos, habilidades clínicas y valores humanos necesarios para prevenir, diagnosticar y tratar enfermedades bucodentales, brindando atención integral con ética, responsabilidad y compromiso social."
+    titleMaxWidth="none"
     links={[
-      { text: 'Iniciar Proceso de Admisión', href: '#contacto', variant: 'primary' },
-      { text: 'Explorar Plan de Estudios', href: '#plan', variant: 'secondary' },
+      { text: 'Inscripciones Abiertas', href: '#contacto', variant: 'primary' },
     ]}
   />
 
   <div class="page-content">
-    <section class="placeholder-section">
-      <div class="container">
-        <h2>Contenido en desarrollo</h2>
-        <p>Esta página está en construcción. Pronto encontrarás información completa sobre la Licenciatura en Odontología.</p>
-      </div>
-    </section>
+    <ClinicSection
+      image={clinicaImage}
+      title="Clínica Odontológica"
+      description="Nuestra clínica es el corazón de tu formación. Desde el cuarto semestre, integrarás equipos de trabajo en un entorno real, atendiendo pacientes de la comunidad con estándares internacionales de bioseguridad y tecnología de punta."
+    />
+
+    <DownloadBanner
+      title="Plan de Estudios"
+      subtitle="Un camino estructurado desde las ciencias básicas hasta la especialización clínica."
+      downloadUrl="#"
+      backgroundColor={primaryColor}
+    />
+
+    <LabsSection
+      image={labsImage}
+      title="Laboratorios de Especialidad"
+      description="Espacios diseñados para la experimentación y el prototipado digital. Aquí, el error es parte del aprendizaje antes de llegar al paciente."
+    />
+
+    <CtaBanner
+      backgroundImage={bannerImage}
+      title="¿Listo para transformar la salud bucal?"
+      subtitle="Las inscripciones para el próximo ciclo académico ya están abiertas. Forma parte de la excelencia académica de Universidad de Durango."
+      buttonText="Hablar con un Asesor"
+      buttonHref="#contacto"
+      overlayColor="14, 165, 233"
+      overlayOpacity={0.85}
+      buttonTextColor={primaryColor}
+    />
+
+    <ContactForm
+      email="admiciones@monterrey.uad.mx"
+      phone="81 1919 5252"
+      address="Calle Padre Mier y Cuauhtémoc"
+      description="Resuelve todas tus dudas. Un asesor de admisiones se pondrá en contacto contigo a la brevedad."
+      hideProgram={true}
+      programValue="Odontología"
+    />
   </div>
 
   <Footer />
 </BaseLayout>
-
-<style>
-  .placeholder-section {
-    padding: 5rem 0;
-    text-align: center;
-  }
-
-  .placeholder-section h2 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-  }
-
-  .placeholder-section p {
-    color: var(--color-gray-600);
-    max-width: 500px;
-    margin: 0 auto;
-  }
-</style>
