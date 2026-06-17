@@ -29,6 +29,7 @@
 
   --font-sans: 'Montserrat Variable', 'Montserrat', system-ui, -apple-system, sans-serif;
   --hero-height: min(100vh, 800px);
+  --hero-height-mobile: min(100vh, 600px);
 }
 
 html {
@@ -79,7 +80,7 @@ button {
 }
 
 @media (max-width: 768px) {
-  :root {
-    --hero-height: min(100vh, 600px);
+  .page-content {
+    margin-top: var(--hero-height-mobile);
   }
 }

@@ -1,12 +1,14 @@
 ---
 import '../styles/global.css';
-import '@fontsource-variable/montserrat';
+import '@fontsource-variable/montserrat/index.css';
 
 interface Props {
   title: string;
   description?: string;
   primaryColor?: string;
   heroBtnColor?: string;
+  heroHeight?: string;
+  heroHeightMobile?: string;
 }
 
 const {
@@ -14,11 +16,13 @@ const {
   description = 'Universidad de Durango - Campus Monterrey',
   primaryColor = '#c10230',
   heroBtnColor = '#c1272d',
+  heroHeight = 'min(100vh, 800px)',
+  heroHeightMobile = 'min(100vh, 600px)',
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es" style={`--color-primary: ${primaryColor}; --color-hero-btn: ${heroBtnColor};`}>
+<html lang="es" style={`--color-primary: ${primaryColor}; --color-hero-btn: ${heroBtnColor}; --hero-height: ${heroHeight}; --hero-height-mobile: ${heroHeightMobile};`}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
