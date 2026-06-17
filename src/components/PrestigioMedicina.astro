@@ -1,0 +1,112 @@
+---
+---
+<section class="prestigio">
+  <div class="container">
+    <div class="prestigio__grid">
+      <div class="prestigio__item">
+        <div class="prestigio__icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18"/>
+            <path d="M5 21V7l8-4v18"/>
+            <path d="M19 21V11l-6-4"/>
+            <path d="M9 9v.01"/>
+            <path d="M9 12v.01"/>
+            <path d="M9 15v.01"/>
+            <path d="M9 18v.01"/>
+          </svg>
+        </div>
+        <div class="prestigio__content">
+          <h3 class="prestigio__title">Red de Campos Clínicos</h3>
+          <p class="prestigio__text">Nuestra alianza estratégica con hospitales de la región permite a nuestros estudiantes sumergirse en la práctica real desde etapas tempranas, guiados por los mejores médicos.</p>
+        </div>
+      </div>
+      <div class="prestigio__item">
+        <div class="prestigio__icon prestigio__icon--comae">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          <span class="prestigio__icon-label">COMAEM</span>
+        </div>
+        <div class="prestigio__content">
+          <h3 class="prestigio__title">Prestigio Avalado</h3>
+          <p class="prestigio__text">Nuestra calidad académica está certificada por los organismos reguladores más exigentes a nivel nacional.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .prestigio {
+    padding: 5rem 2rem;
+    background: var(--color-white);
+  }
+
+  .container {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .prestigio__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .prestigio__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .prestigio__icon {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+  }
+
+  .prestigio__icon-label {
+    font-size: 0.5rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    line-height: 1;
+  }
+
+  .prestigio__content {
+    flex: 1;
+  }
+
+  .prestigio__title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    color: var(--color-dark);
+  }
+
+  .prestigio__text {
+    color: var(--color-gray-600);
+    line-height: 1.5;
+    font-size: 0.95rem;
+  }
+
+  @media (max-width: 768px) {
+    .prestigio {
+      padding: 3rem 1.5rem;
+    }
+
+    .prestigio__item {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+</style>

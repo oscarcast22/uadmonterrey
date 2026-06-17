@@ -9,6 +9,7 @@ interface Props {
   buttonHref?: string;
   overlayOpacity?: number;
   overlayColor?: string;
+  buttonTextColor?: string;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   buttonHref = '#contacto',
   overlayOpacity = 0.5,
   overlayColor = '0, 0, 0',
+  buttonTextColor = 'var(--color-gray-800)',
 } = Astro.props;
 ---
 
@@ -35,7 +37,7 @@ const {
     />
   </div>
   <div class="cta-banner__overlay" style={`--cta-overlay: ${overlayOpacity}; --cta-color: ${overlayColor};`}></div>
-  <div class="cta-banner__content">
+  <div class="cta-banner__content" style={`--cta-btn-text-color: ${buttonTextColor};`}>
     <h2 class="cta-banner__title">{title}</h2>
     {subtitle && <p class="cta-banner__subtitle">{subtitle}</p>}
     <a href={buttonHref} class="cta-banner__btn">{buttonText}</a>
@@ -97,7 +99,7 @@ const {
     margin-top: 0.75rem;
     padding: 0.85rem 2rem;
     background: var(--color-white);
-    color: var(--color-gray-800);
+    color: var(--cta-btn-text-color);
     border-radius: 50px;
     font-size: 0.95rem;
     font-weight: 600;

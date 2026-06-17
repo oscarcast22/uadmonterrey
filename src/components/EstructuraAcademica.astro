@@ -1,0 +1,150 @@
+
+<section class="estructura" id="plan">
+  <div class="container">
+    <h2 class="estructura__title">Estructura Académica</h2>
+    
+    <div class="accordion">
+      <button class="accordion__header" aria-expanded="false">
+        <span>Plan de estudios</span>
+        <svg class="accordion__icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      
+      <div class="accordion-animation-wrapper">
+        <div class="accordion__body-item">
+          <div class="accordion__content">
+            <h3 class="accordion__subtitle">Ciclos Clínicos e Internado</h3>
+            <p class="accordion__text">A partir del quinto semestre, el aprendizaje se traslada a los centros hospitalarios de mayor que forman parte de nuestra red.</p>
+            <a href="#" class="accordion__btn" download>Descargar Plan de Estudios (PDF)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.querySelector('.accordion__header');
+    const accordion = document.querySelector('.accordion');
+
+    header?.addEventListener('click', () => {
+      const isOpen = accordion?.classList.toggle('is-open');
+      header.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  });
+</script>
+
+<style>
+  .estructura {
+    padding: 5rem 2rem;
+    background: var(--color-gray-100);
+  }
+
+  .estructura__title {
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: var(--color-dark);
+  }
+
+  .container {
+    margin: 0 auto;
+  }
+
+  .accordion {
+    border-radius: 6px;
+  }
+
+  .accordion__header {
+    width: 100%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.7rem 4rem;
+    background: var(--color-primary);
+    color: var(--color-white);
+    font-size: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.2s ease;
+  }
+
+  .accordion__header:hover {
+    background: color-mix(in srgb, var(--color-primary) 90%, black);
+  }
+
+  .accordion__icon {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+  }
+
+  .accordion.is-open .accordion__icon {
+    transform: rotate(180deg);
+  }
+
+  .accordion-animation-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-out;
+  }
+
+  .accordion.is-open .accordion-animation-wrapper {
+    grid-template-rows: 1fr;
+  }
+
+  .accordion__body-item {
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .accordion__content {
+    padding: 1.5rem;
+    text-align: center;
+    border: 2px dotted var(--color-gray-200);
+    border-radius: 2px;
+    margin-top: 20px;
+  }
+
+  .accordion__subtitle {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    color: var(--color-dark);
+  }
+
+  .accordion__text {
+    color: var(--color-gray-600);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .accordion__btn {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+
+  .accordion__btn:hover {
+    background: color-mix(in srgb, var(--color-primary) 85%, black);
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 768px) {
+    .estructura {
+      padding: 3rem 1.5rem;
+    }
+  }
+</style>

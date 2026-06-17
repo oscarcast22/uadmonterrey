@@ -1,13 +1,22 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import EstructuraAcademica from '../components/EstructuraAcademica.astro';
+import PrestigioMedicina from '../components/PrestigioMedicina.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
+import { areas } from '../data/ofertaEducativa';
+import heroImage from '../assets/images/medicina/medicina_hero.jpg';
+import bannerImage from '../assets/images/escuela_de_medicina/banner-cta.jpg';
 
-const primaryColor = '#0ea5e9';
+const primaryColor = '#3cb4e5';
+const saludAreas = areas.filter((a) => a.nombre === 'Salud');
 ---
 
-<BaseLayout title="Medicina - UAD Monterrey" primaryColor={primaryColor}>
+<BaseLayout title="Medicina - UAD Monterrey" primaryColor={primaryColor} heroBtnColor={primaryColor}>
   <Hero
+    backgroundImage={heroImage}
     title="Medicina: Ciencia al servicio de la vida"
     subtitle="Formamos líderes médicos con rigor científico, compasión humana y la capacidad técnica para transformar la salud global en el siglo XXI."
     links={[
@@ -17,32 +26,30 @@ const primaryColor = '#0ea5e9';
   />
 
   <div class="page-content">
-    <section class="placeholder-section">
-      <div class="container">
-        <h2>Contenido en desarrollo</h2>
-        <p>Esta página está en construcción. Pronto encontrarás información completa sobre la Licenciatura en Medicina.</p>
-      </div>
-    </section>
+    <EstructuraAcademica />
+
+    <PrestigioMedicina />
+
+    <CtaBanner
+      backgroundImage={bannerImage}
+      title="Comienza tu Trayectoria Médica"
+      subtitle="El proceso de admisión es altamente selectivo. Asegura tu lugar en la próxima generación de médicos de élite."
+      buttonText="Hablar con un Asesor"
+      buttonHref="#contacto"
+      overlayColor="60, 180, 229"
+      overlayOpacity={0.85}
+    />
+
+    <ContactForm
+      email="admiciones@monterrey.uad.mx"
+      phone="81 1919 5252"
+      address="Calle Padre Mier y Cuauhtémoc"
+      description="Resuelve todas tus dudas. Un asesor de admisiones se pondrá en contacto contigo a la brevedad."
+      areas={saludAreas}
+      hideProgram={true}
+      programValue="Medicina"
+    />
   </div>
 
   <Footer />
 </BaseLayout>
-
-<style>
-  .placeholder-section {
-    padding: 5rem 0;
-    text-align: center;
-  }
-
-  .placeholder-section h2 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-  }
-
-  .placeholder-section p {
-    color: var(--color-gray-600);
-    max-width: 500px;
-    margin: 0 auto;
-  }
-</style>

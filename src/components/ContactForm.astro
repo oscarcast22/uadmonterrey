@@ -8,6 +8,8 @@ interface Props {
   address?: string;
   description?: string;
   areas?: Area[];
+  hideProgram?: boolean;
+  programValue?: string;
 }
 
 const {
@@ -16,6 +18,8 @@ const {
   address = 'Calle Padre Mier y Cuauhtémoc',
   description = 'Resuelve todas tus dudas. Un asesor de admisiones se pondrá en contacto contigo a la brevedad.',
   areas = allAreas,
+  hideProgram = false,
+  programValue = '',
 } = Astro.props;
 ---
 
@@ -44,32 +48,36 @@ const {
         <input type="text" name="nombre" placeholder="Nombre Completo" required />
         <input type="email" name="email" placeholder="Correo Electrónico" required />
         <input type="tel" name="telefono" placeholder="Teléfono" />
-        <div class="custom-select" data-name="programa">
-          <input type="hidden" name="programa" value="" />
-          <button type="button" class="custom-select__trigger" aria-haspopup="listbox" aria-expanded="false">
-            <span class="custom-select__placeholder">Selecciona un Programa de Interés</span>
-            <span class="custom-select__value"></span>
-            <svg class="custom-select__icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <ul class="custom-select__dropdown" role="listbox">
-            {areas.map((area) => (
-              <li class="custom-select__group" role="presentation">
-                <span class="custom-select__group-label" style={`--area-color: var(${area.colorVar})`}>
-                  {area.nombre}
-                </span>
-                <ul class="custom-select__options" role="group" aria-label={area.nombre}>
-                  {area.carreras.map((carrera) => (
-                    <li class="custom-select__option" role="option" data-value={carrera.nombre} tabindex="-1">
-                      {carrera.nombre}
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {hideProgram ? (
+          <input type="hidden" name="programa" value={programValue} />
+        ) : (
+          <div class="custom-select" data-name="programa">
+            <input type="hidden" name="programa" value="" />
+            <button type="button" class="custom-select__trigger" aria-haspopup="listbox" aria-expanded="false">
+              <span class="custom-select__placeholder">Selecciona un Programa de Interés</span>
+              <span class="custom-select__value"></span>
+              <svg class="custom-select__icon" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <ul class="custom-select__dropdown" role="listbox">
+              {areas.map((area) => (
+                <li class="custom-select__group" role="presentation">
+                  <span class="custom-select__group-label" style={`--area-color: var(${area.colorVar})`}>
+                    {area.nombre}
+                  </span>
+                  <ul class="custom-select__options" role="group" aria-label={area.nombre}>
+                    {area.carreras.map((carrera) => (
+                      <li class="custom-select__option" role="option" data-value={carrera.nombre} tabindex="-1">
+                        {carrera.nombre}
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         <textarea name="mensaje" placeholder="Mensaje (opcional)" rows="3"></textarea>
         <button type="submit" class="contact__submit">Enviar Información</button>
         <p class="contact__privacy">Al enviar, aceptas nuestro aviso de privacidad y términos de servicio.</p>
