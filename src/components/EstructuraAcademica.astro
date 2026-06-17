@@ -1,11 +1,14 @@
+---
+import { semestresMedicina } from '../data/planMedicina';
+---
 
 <section class="estructura" id="plan">
   <div class="container">
     <h2 class="estructura__title">Estructura Académica</h2>
-    
+
     <div class="accordion">
       <button class="accordion__header" aria-expanded="false">
-        <span>Plan de estudios</span>
+        <span>Plan de Estudios</span>
         <svg class="accordion__icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -14,6 +17,19 @@
       <div class="accordion-animation-wrapper">
         <div class="accordion__body-item">
           <div class="accordion__content">
+            <div class="plan-grid">
+              {semestresMedicina.map((semestre) => (
+                <div class="semestre">
+                  <h3 class="semestre__title">{semestre.nombre}</h3>
+                  <ul class="semestre__list">
+                    {semestre.materias.map((materia) => (
+                      <li class="semestre__materia">{materia}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+
             <h3 class="accordion__subtitle">Ciclos Clínicos e Internado</h3>
             <p class="accordion__text">A partir del quinto semestre, el aprendizaje se traslada a los centros hospitalarios de mayor que forman parte de nuestra red.</p>
             <a href="#" class="accordion__btn" download>Descargar Plan de Estudios (PDF)</a>
@@ -38,20 +54,49 @@
 
 <style>
   .estructura {
-    padding: 5rem 2rem;
+    padding: 6rem 2rem 8rem;
     background: var(--color-gray-100);
   }
 
   .estructura__title {
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    font-weight: 700;
+    font-size: clamp(2.8rem, 2.5vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1.2;
     text-align: center;
-    margin-bottom: 2.5rem;
+    margin-bottom: 4rem;
     color: var(--color-dark);
   }
 
-  .container {
-    margin: 0 auto;
+  .plan-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .semestre {
+    padding: 0 0 1rem 0;
+    border-bottom: 1px solid var(--color-gray-200);
+  }
+
+  .semestre__title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 0.6rem;
+  }
+
+  .semestre__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .semestre__materia {
+    font-size: 0.85rem;
+    color: var(--color-gray-600);
+    line-height: 1.5;
   }
 
   .accordion {
@@ -104,7 +149,7 @@
 
   .accordion__content {
     padding: 1.5rem;
-    text-align: center;
+    text-align: left;
     border: 2px dotted var(--color-gray-200);
     border-radius: 2px;
     margin-top: 20px;
@@ -115,6 +160,7 @@
     font-weight: 500;
     margin-bottom: 0.75rem;
     color: var(--color-dark);
+    text-align: center;
   }
 
   .accordion__text {
@@ -123,10 +169,13 @@
     margin-bottom: 1.5rem;
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
   }
 
   .accordion__btn {
-    display: inline-block;
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
     padding: 0.5rem 1.5rem;
     background: var(--color-primary);
     color: var(--color-white);
@@ -142,9 +191,24 @@
     transform: translateY(-1px);
   }
 
+  @media (max-width: 900px) {
+    .plan-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
   @media (max-width: 768px) {
     .estructura {
       padding: 3rem 1.5rem;
+    }
+
+    .plan-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .accordion__header {
+      padding: 0.7rem 1.5rem;
+      font-size: 1.2rem;
     }
   }
 </style>
