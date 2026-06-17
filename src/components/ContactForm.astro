@@ -46,8 +46,8 @@ const {
     <div class="contact__form-wrapper">
       <form class="contact__form" action="#" method="POST">
         <input type="text" name="nombre" placeholder="Nombre Completo" required />
-        <input type="email" name="email" placeholder="Correo Electrónico" required />
-        <input type="tel" name="telefono" placeholder="Teléfono" />
+        <input type="email" name="email" placeholder="Correo Electrónico" required pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" title="Ingresa un correo electrónico válido (ejemplo: correo@dominio.com)" />
+        <input type="tel" name="telefono" placeholder="Teléfono" pattern="[0-9]{10}" maxlength="10" title="Ingresa 10 dígitos sin espacios ni guiones (ejemplo: 8112345678)" />
         {hideProgram ? (
           <input type="hidden" name="programa" value={programValue} />
         ) : (
@@ -80,7 +80,7 @@ const {
         )}
         <textarea name="mensaje" placeholder="Mensaje (opcional)" rows="3"></textarea>
         <button type="submit" class="contact__submit">Enviar Información</button>
-        <p class="contact__privacy">Al enviar, aceptas nuestro aviso de privacidad y términos de servicio.</p>
+        <p class="contact__privacy">Al enviar, aceptas nuestro <a href="/aviso-de-privacidad">aviso de privacidad</a> y <a href="/terminos-de-servicio">términos de servicio</a>.</p>
       </form>
     </div>
   </div>
@@ -177,6 +177,11 @@ const {
   .contact__form textarea:focus {
     border-color: var(--color-primary);
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-primary) 10%, transparent);
+  }
+
+  .contact__form input:invalid:not(:placeholder-shown) {
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px color-mix(in srgb, #dc2626 10%, transparent);
   }
 
   /* Custom Select */
@@ -375,7 +380,7 @@ const {
   }
 
   .contact__submit:hover {
-    background: var(--color-primary-dark);
+    background: color-mix(in srgb, var(--color-primary) 85%, black);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px var(--color-shadow);
   }
@@ -385,26 +390,131 @@ const {
     color: var(--color-gray-400);
   }
 
+  .contact__privacy a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 2px;
+  }
+
+  .contact__privacy a:hover {
+    color: var(--color-gray-800);
+    text-decoration-color: var(--color-gray-400);
+  }
+
   @media (max-width: 768px) {
+    .contact {
+      padding: 3.5rem 1rem;
+    }
+
     .contact__card {
       grid-template-columns: 1fr;
-      border-radius: 40px;
+      border-radius: 24px;
     }
 
     .contact__info {
-      border-radius: 40px 40px 0 0;
+      border-radius: 24px 24px 0 0;
+      padding: 2rem 1.5rem;
+    }
+
+    .contact__title {
+      font-size: 2rem;
+    }
+
+    .contact__description {
+      margin-bottom: 2rem;
     }
 
     .contact__form-wrapper {
-      border-radius: 0 0 40px 40px;
+      border-radius: 0 0 24px 24px;
+      padding: 1.5rem;
+    }
+
+    .contact__form {
+      gap: 1rem;
+    }
+
+    .contact__form input,
+    .contact__form textarea {
+      padding: 0.85rem 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    .custom-select__trigger {
+      padding: 0.85rem 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    .custom-select__option {
+      padding: 0.55rem 1.2rem 0.55rem 2.2rem;
+    }
+
+    .contact__submit {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.05rem;
+      text-align: center;
+      justify-content: center;
+    }
+
+    .contact__privacy {
+      text-align: center;
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .contact {
+      padding: 2.5rem 0.75rem;
+    }
+
+    .contact__card {
+      border-radius: 16px;
     }
 
     .contact__info {
-      padding: 2rem 1.5rem;
+      border-radius: 16px 16px 0 0;
+      padding: 1.5rem 1.25rem;
+    }
+
+    .contact__title {
+      font-size: 1.65rem;
+    }
+
+    .contact__description {
+      font-size: 0.88rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact__detail {
+      font-size: 0.85rem;
     }
 
     .contact__form-wrapper {
-      padding: 2rem 1.5rem;
+      border-radius: 0 0 16px 16px;
+      padding: 1.25rem;
+    }
+
+    .contact__form {
+      gap: 0.85rem;
+    }
+
+    .contact__form input,
+    .contact__form textarea {
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    .custom-select__trigger {
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    .contact__submit {
+      padding: 0.9rem;
+      font-size: 1rem;
     }
   }
 </style>
@@ -537,5 +647,21 @@ const {
     document.addEventListener('DOMContentLoaded', initCustomSelects);
   } else {
     initCustomSelects();
+  }
+
+  function initPhoneInput(): void {
+    document.querySelectorAll<HTMLInputElement>('input[type="tel"]').forEach((input) => {
+      input.addEventListener('input', () => {
+        input.value = input.value.replace(/[^0-9]/g, '');
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initPhoneInput);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPhoneInput);
+  } else {
+    initPhoneInput();
   }
 </script>
