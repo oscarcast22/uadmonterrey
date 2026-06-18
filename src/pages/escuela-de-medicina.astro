@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import LicenciaturasSalud from '../components/LicenciaturasSalud.astro';
+import CentrosSimulacion from '../components/CentrosSimulacion.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+import { areas } from '../data/ofertaEducativa';
+import heroImage from '../assets/images/escuela_de_medicina/escuela_de_medicina_hero.jpg';
+import bannerImage from '../assets/images/escuela_de_medicina/banner-cta.jpg';
+
+const primaryColor = '#3cb4e5';
+const saludAreas = areas.filter((a) => a.nombre === 'Salud');
+---
+
+<BaseLayout
+  title="Escuela de Medicina - UAD Monterrey"
+  description="Escuela de Medicina UAD Monterrey. Licenciaturas en salud con enfoque humanista, tecnología de vanguardia e investigación traslacional. Postúlate ahora."
+  primaryColor={primaryColor}
+  heroBtnColor={primaryColor}
+>
+  <script is:inline type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Licenciaturas en Ciencias de la Salud",
+      "description": "Programas de formación profesional en salud con enfoque humanista y tecnología de vanguardia.",
+      "url": "https://www.uadmonterrey.mx/escuela-de-medicina",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "EducationalOccupationalProgram",
+            "name": "Licenciatura en Medicina"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "EducationalOccupationalProgram",
+            "name": "Licenciatura en Odontología"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "EducationalOccupationalProgram",
+            "name": "Licenciatura en Enfermería"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "EducationalOccupationalProgram",
+            "name": "Licenciatura en Nutrición"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "EducationalOccupationalProgram",
+            "name": "Licenciatura en Fisioterapia"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "item": {
+            "@type": "EducationalOccupationalProgram",
+            "name": "Licenciatura en Psicología"
+          }
+        }
+      ]
+    }
+  </script>
+
+  <Hero
+    backgroundImage={heroImage}
+    title="Liderando el futuro del cuidado humano"
+    subtitle="Formamos profesionales de excelencia con un enfoque humanista, integrando la tecnología de vanguardia y la investigación traslacional para transformar el bienestar global."
+    links={[
+      { text: 'Postularme Ahora', href: '#contacto', variant: 'primary' },
+    ]}
+  />
+
+  <div class="page-content">
+    <LicenciaturasSalud />
+
+    <CentrosSimulacion />
+
+    <CtaBanner
+      backgroundImage={bannerImage}
+      title="Comienza tu carrera en la salud"
+      subtitle="Únete a una comunidad de aprendizaje dedicada a salvar vidas y mejorar la salud colectiva. Inscripciones abiertas para el ciclo 2026."
+      buttonText="Hablar con un Asesor"
+      buttonHref="#contacto"
+      overlayColor="60, 180, 229"
+      overlayOpacity={0.85}
+      buttonTextColor={primaryColor}
+    />
+
+    <ContactForm
+      email="admiciones@monterrey.uad.mx"
+      phone="81 1919 5252"
+      address="Calle Padre Mier y Cuauhtémoc"
+      description="Resuelve todas tus dudas. Un asesor de admisiones se pondrá en contacto contigo a la brevedad."
+      areas={saludAreas}
+    />
+  </div>
+
+  <Footer />
+</BaseLayout>

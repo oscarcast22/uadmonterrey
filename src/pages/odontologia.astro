@@ -16,11 +16,29 @@ const primaryColor = '#3cb4e5';
 ---
 
 <BaseLayout
-  title="Odontología - UAD Monterrey"
+  title="Licenciatura en Odontología - UAD Monterrey"
+  description="Estudia Odontología en UAD Monterrey. Clínica propia, laboratorios de especialidad y tecnología de punta. Inscripciones abiertas 2026."
   primaryColor={primaryColor}
   heroBtnColor={primaryColor}
   heroHeightMobile="min(100vh, 750px)"
 >
+  <script is:inline type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOccupationalProgram",
+      "name": "Licenciatura en Odontología",
+      "description": "Forma profesionales de la salud bucal con excelencia clínica, innovación y compromiso humano.",
+      "url": "https://www.uadmonterrey.mx/odontologia",
+      "provider": {
+        "@type": "EducationalOrganization",
+        "name": "Universidad Autónoma de Durango - Campus Monterrey"
+      },
+      "educationalLevel": "Licenciatura",
+      "timeToComplete": "P5Y",
+      "occupationalCategory": "Cirujano Dentista"
+    }
+  </script>
+
   <Hero
     backgroundImage={heroImage}
     title="Transforma vidas a través de la salud bucal, con excelencia clínica, innovación y compromiso humano."

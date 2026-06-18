@@ -14,7 +14,29 @@ const primaryColor = '#3cb4e5';
 const saludAreas = areas.filter((a) => a.nombre === 'Salud');
 ---
 
-<BaseLayout title="Medicina - UAD Monterrey" primaryColor={primaryColor} heroBtnColor={primaryColor}>
+<BaseLayout
+  title="Licenciatura en Medicina - UAD Monterrey"
+  description="Estudia Medicina en UAD Monterrey. Formamos líderes médicos con rigor científico y compasión humana. Admisión selectiva 2026. Campus de vanguardia."
+  primaryColor={primaryColor}
+  heroBtnColor={primaryColor}
+>
+  <script is:inline type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOccupationalProgram",
+      "name": "Licenciatura en Medicina",
+      "description": "Formamos líderes médicos con rigor científico, compasión humana y la capacidad técnica para transformar la salud global.",
+      "url": "https://www.uadmonterrey.mx/medicina",
+      "provider": {
+        "@type": "EducationalOrganization",
+        "name": "Universidad Autónoma de Durango - Campus Monterrey"
+      },
+      "educationalLevel": "Licenciatura",
+      "timeToComplete": "P6Y",
+      "occupationalCategory": "Médico Cirujano"
+    }
+  </script>
+
   <Hero
     backgroundImage={heroImage}
     title="Medicina: Ciencia al servicio de la vida"
