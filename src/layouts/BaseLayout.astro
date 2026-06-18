@@ -9,6 +9,7 @@ interface Props {
   heroBtnColor?: string;
   heroHeight?: string;
   heroHeightMobile?: string;
+  ogImage?: string;
 }
 
 const {
@@ -18,7 +19,11 @@ const {
   heroBtnColor = '#c1272d',
   heroHeight = 'min(100vh, 800px)',
   heroHeightMobile = 'min(100vh, 600px)',
+  ogImage = '/og-default.png',
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const absoluteOGImage = new URL(ogImage, Astro.site).href;
 ---
 
 <!doctype html>
@@ -28,7 +33,69 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content={primaryColor} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL.href} />
+
+    <link rel="preconnect" href="https://rsms.me/" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:site_name" content="UAD Monterrey" />
+    <meta property="og:image" content={absoluteOGImage} />
+    <meta property="og:locale" content="es_MX" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteOGImage} />
+
     <title>{title}</title>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Universidad Autónoma de Durango - Campus Monterrey",
+        "alternateName": "UAD Monterrey",
+        "url": "https://www.uadmonterrey.mx",
+        "logo": "https://www.uadmonterrey.mx/favicon.svg",
+        "description": "Universidad de educación superior en Monterrey. Ofrece licenciaturas en medicina, odontología y ciencias de la salud.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Calle Padre Mier y Cuauhtémoc",
+          "addressLocality": "Monterrey",
+          "addressRegion": "Nuevo León",
+          "addressCountry": "MX"
+        },
+        "telephone": "+52-81-1919-5252",
+        "email": "admiciones@monterrey.uad.mx",
+        "sameAs": [],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Programas Educativos",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "EducationalOccupationalProgram",
+                "name": "Licenciatura en Medicina"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "EducationalOccupationalProgram",
+                "name": "Licenciatura en Odontología"
+              }
+            }
+          ]
+        }
+      }
+    </script>
   </head>
   <body>
     <slot />
