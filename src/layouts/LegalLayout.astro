@@ -165,12 +165,17 @@ const { title, pageTitle, pageDescription, otherPage } = Astro.props;
 
   @media (max-width: 768px) {
     .legal-hero {
-      padding: 4rem 1.25rem 1.5rem;
+      padding: 1.5rem 1.25rem 1.5rem;
     }
 
     .legal-hero__back {
-      left: 0;
-      top: -1.5rem;
+      position: relative;
+      top: auto;
+      left: auto;
+      transform: none;
+      display: flex;
+      margin: 0 auto 1rem;
+      width: fit-content;
     }
 
     .legal-page {
