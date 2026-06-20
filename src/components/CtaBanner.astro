@@ -17,7 +17,7 @@ const {
   title,
   subtitle,
   buttonText = 'Hablar con un Asesor',
-  buttonHref = '#contacto',
+  buttonHref = 'https://wa.me/8119195252?text=Me%20interesa%20recibir%20más%20información%20de%20las%20licenciaturas',
   overlayOpacity = 0.5,
   overlayColor = '0, 0, 0',
   buttonTextColor = 'var(--color-gray-800)',
@@ -40,7 +40,7 @@ const {
   <div class="cta-banner__content" style={`--cta-btn-text-color: ${buttonTextColor};`}>
     <h2 class="cta-banner__title">{title}</h2>
     {subtitle && <p class="cta-banner__subtitle">{subtitle}</p>}
-    <a href={buttonHref} class="cta-banner__btn">{buttonText}</a>
+    <a href={buttonHref} class="cta-banner__btn" target="_blank">{buttonText}</a>
   </div>
 </section>
 
