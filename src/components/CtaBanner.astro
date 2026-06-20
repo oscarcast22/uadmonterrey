@@ -104,6 +104,8 @@ const {
     font-size: 0.95rem;
     font-weight: 600;
     transition: all 0.25s ease;
+    opacity: 0;
+    transform: translateY(15px);
   }
 
   .cta-banner__btn:hover {
@@ -111,3 +113,24 @@ const {
     box-shadow: 0 6px 20px var(--color-shadow);
   }
 </style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const banner = document.querySelector(".cta-banner");
+  if (banner) {
+    gsap.to(".cta-banner__btn", {
+      y: 0,
+      opacity: 1,
+      duration: 0.6,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".cta-banner__content",
+        start: "top 80%",
+        once: true,
+      },
+    });
+  }
+</script>

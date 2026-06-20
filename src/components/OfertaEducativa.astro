@@ -45,6 +45,7 @@ import { areas } from '../data/ofertaEducativa';
     font-weight: 300;
     color: var(--color-gray-400);
     margin-bottom: 2.5rem;
+    opacity: 0;
   }
 
   .oferta__areas {
@@ -58,6 +59,7 @@ import { areas } from '../data/ofertaEducativa';
     display: flex;
     align-items: center;
     gap: 1rem;
+    opacity: 0;
   }
 
   .oferta__badge {
@@ -225,3 +227,38 @@ import { areas } from '../data/ofertaEducativa';
     }
   }
 </style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const oferta = document.querySelector(".oferta");
+  if (oferta) {
+    gsap.to(".oferta__title", {
+      opacity: 1,
+      duration: 0.6,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".oferta__title",
+        start: "top 85%",
+        once: true,
+      },
+    });
+
+    const areas = document.querySelectorAll<HTMLElement>(".oferta__area");
+    areas.forEach((area, i) => {
+      gsap.to(area, {
+        opacity: 1,
+        duration: 0.5,
+        ease: "power3.out",
+        delay: i * 0.08,
+        scrollTrigger: {
+          trigger: area,
+          start: "top 88%",
+          once: true,
+        },
+      });
+    });
+  }
+</script>

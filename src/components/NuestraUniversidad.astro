@@ -94,6 +94,7 @@ const {
     color: var(--color-gray-800);
     margin-bottom: 1.5rem;
     position: relative;
+    opacity: 0;
   }
 
   .university__title::after {
@@ -150,9 +151,14 @@ const {
     border-radius: 4px;
     box-shadow: 0 8px 30px var(--color-shadow);
     display: block;
+    opacity: 0;
   }
 
   @media (max-width: 900px) {
+    .university {
+      padding: 3.5rem 0;
+    }
+
     .university__grid {
       grid-template-columns: 1fr;
       gap: 2.5rem;
@@ -162,12 +168,48 @@ const {
       order: -1;
     }
 
+    .university__title {
+      font-size: 1.75rem;
+    }
+
+    .university__paragraph {
+      font-size: 0.88rem;
+    }
+
     .university__stats {
-      gap: 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .university__stat-value {
+      font-size: 1.3rem;
+    }
+
+    .university__stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.03em;
+      line-height: 1.3;
     }
 
     .university__image {
       justify-self: center;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .university__stats {
+      gap: 0.5rem;
+    }
+
+    .university__stat-value {
+      font-size: 1.5rem;
+    }
+
+    .university__stat-label {
+      font-size: 0.8rem;
     }
   }
 </style>
@@ -176,6 +218,39 @@ const {
   import gsap from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger);
+
+  const section = document.querySelector(".university");
+  if (section) {
+    gsap.fromTo(".university__title",
+      { y: 25 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.7,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".university__title",
+          start: "top 85%",
+          once: true,
+        },
+      }
+    );
+
+    gsap.fromTo(".university__image",
+      { scale: 1.03 },
+      {
+        scale: 1,
+        opacity: 1,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".university__image-wrapper",
+          start: "top 75%",
+          once: true,
+        },
+      }
+    );
+  }
 
   const values = document.querySelectorAll<HTMLElement>(".university__stat-value");
 
