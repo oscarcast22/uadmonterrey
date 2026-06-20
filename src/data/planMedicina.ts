@@ -125,13 +125,25 @@ export const semestresMedicina: Semestre[] = [
   {
     nombre: 'Onceavo Semestre',
     materias: [
-      'Internado de Pregrado I',
+      'Internado de Pregrado',
     ],
   },
   {
     nombre: 'Doceavo Semestre',
     materias: [
-      'Internado de Pregrado II',
+      'Internado de Pregrado',
     ],
   },
+  {
+    nombre: 'Treceavo Semestre',
+    materias: [
+      'Servicio Social',
+    ],
+  },
+  {
+    nombre: 'Catorceavo Semestre',
+    materias: [
+      'Servicio Social',
+    ],
+  }
 ];
