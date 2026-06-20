@@ -17,6 +17,9 @@ importers:
       '@fontsource-variable/montserrat':
         specifier: ^5.2.8
         version: 5.2.8
+      '@netlify/blobs':
+        specifier: ^10.7.9
+        version: 10.7.9
       astro:
         specifier: ^6.4.6
         version: 6.4.6(@netlify/blobs@10.7.9)(@types/node@24.13.2)(jiti@2.7.0)(rollup@4.61.1)(yaml@2.9.0)
