@@ -135,6 +135,7 @@
     display: flex;
     align-items: flex-start;
     gap: 1.25rem;
+    opacity: 0;
   }
 
   .prestigio__icon {
@@ -189,3 +190,29 @@
     }
   }
 </style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const items = document.querySelectorAll<HTMLElement>(".prestigio__item");
+  if (items.length > 0) {
+    gsap.set(items, { y: 20 });
+
+    items.forEach((item, i) => {
+      gsap.to(item, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power3.out",
+        delay: i * 0.2,
+        scrollTrigger: {
+          trigger: item,
+          start: "top 85%",
+          once: true,
+        },
+      });
+    });
+  }
+</script>

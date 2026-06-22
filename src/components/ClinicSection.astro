@@ -53,6 +53,7 @@ const {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    opacity: 0;
   }
 
   .clinic__title {
@@ -70,6 +71,7 @@ const {
 
   .clinic__image-wrapper {
     overflow: hidden;
+    opacity: 0;
   }
 
   .clinic__image {
@@ -101,3 +103,41 @@ const {
     }
   }
 </style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const content = document.querySelector<HTMLElement>(".clinic__content");
+  const imageWrapper = document.querySelector<HTMLElement>(".clinic__image-wrapper");
+
+  if (content && imageWrapper) {
+    gsap.set(content, { x: -30 });
+    gsap.set(imageWrapper, { scale: 1.05 });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".clinic",
+        start: "top 75%",
+        once: true,
+      },
+    });
+
+    tl.to(content, {
+      opacity: 1,
+      x: 0,
+      duration: 0.7,
+      ease: "power3.out",
+    }).to(
+      imageWrapper,
+      {
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
+        ease: "power3.out",
+      },
+      "-=0.5"
+    );
+  }
+</script>

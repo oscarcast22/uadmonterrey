@@ -62,6 +62,7 @@ const centros: Centro[] = [
     font-weight: 600;
     color: var(--color-salud);
     margin-bottom: 1rem;
+    opacity: 0;
   }
 
   .simulacion__subtitle {
@@ -72,6 +73,7 @@ const centros: Centro[] = [
     font-weight: 500;
     margin: 0 auto 3rem;
     line-height: 1.2;
+    opacity: 0;
   }
 
   .simulacion__grid {
@@ -83,6 +85,7 @@ const centros: Centro[] = [
   .simulacion__card {
     border-radius: 20px;
     overflow: hidden;
+    opacity: 0;
   }
 
   .simulacion__image-wrapper {
@@ -151,3 +154,58 @@ const centros: Centro[] = [
     }
   }
 </style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const title = document.querySelector<HTMLElement>(".simulacion__title");
+  const subtitle = document.querySelector<HTMLElement>(".simulacion__subtitle");
+  const cards = document.querySelectorAll<HTMLElement>(".simulacion__card");
+
+  if (title && subtitle && cards.length > 0) {
+    gsap.set(title, { y: 20 });
+    gsap.set(subtitle, { y: 15 });
+    gsap.set(cards, { scale: 1.04 });
+
+    gsap.to(title, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: title,
+        start: "top 88%",
+        once: true,
+      },
+    });
+
+    gsap.to(subtitle, {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: subtitle,
+        start: "top 88%",
+        once: true,
+      },
+    });
+
+    cards.forEach((card, i) => {
+      gsap.to(card, {
+        opacity: 1,
+        scale: 1,
+        duration: 0.6,
+        ease: "power3.out",
+        delay: i * 0.15,
+        scrollTrigger: {
+          trigger: card,
+          start: "top 90%",
+          once: true,
+        },
+      });
+    });
+  }
+</script>

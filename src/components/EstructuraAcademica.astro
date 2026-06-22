@@ -52,6 +52,44 @@ import { semestresMedicina } from '../data/planMedicina';
   });
 </script>
 
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const title = document.querySelector<HTMLElement>(".estructura__title");
+  const header = document.querySelector<HTMLElement>(".accordion__header");
+
+  if (title && header) {
+    gsap.set([title, header], { y: 20 });
+
+    gsap.to(title, {
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".estructura",
+        start: "top 80%",
+        once: true,
+      },
+    });
+
+    gsap.to(header, {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      ease: "power3.out",
+      delay: 0.15,
+      scrollTrigger: {
+        trigger: ".estructura",
+        start: "top 80%",
+        once: true,
+      },
+    });
+  }
+</script>
+
 <style>
   .estructura {
     padding: 6rem 2rem 8rem;
@@ -65,6 +103,7 @@ import { semestresMedicina } from '../data/planMedicina';
     text-align: center;
     margin-bottom: 4rem;
     color: var(--color-dark);
+    opacity: 0;
   }
 
   .plan-grid {
@@ -117,6 +156,7 @@ import { semestresMedicina } from '../data/planMedicina';
     cursor: pointer;
     border-radius: 2px;
     transition: background 0.2s ease;
+    opacity: 0;
   }
 
   .accordion__header:hover {

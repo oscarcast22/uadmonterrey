@@ -53,6 +53,7 @@ const {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    opacity: 0;
   }
 
   .labs__title {
@@ -70,6 +71,7 @@ const {
 
   .labs__image-wrapper {
     overflow: hidden;
+    opacity: 0;
   }
 
   .labs__image {
@@ -96,3 +98,41 @@ const {
     }
   }
 </style>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const imageWrapper = document.querySelector<HTMLElement>(".labs__image-wrapper");
+  const content = document.querySelector<HTMLElement>(".labs__content");
+
+  if (imageWrapper && content) {
+    gsap.set(imageWrapper, { scale: 1.05 });
+    gsap.set(content, { x: 30 });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".labs",
+        start: "top 75%",
+        once: true,
+      },
+    });
+
+    tl.to(imageWrapper, {
+      opacity: 1,
+      scale: 1,
+      duration: 0.8,
+      ease: "power3.out",
+    }).to(
+      content,
+      {
+        opacity: 1,
+        x: 0,
+        duration: 0.7,
+        ease: "power3.out",
+      },
+      "-=0.5"
+    );
+  }
+</script>
