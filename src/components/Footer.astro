@@ -1,13 +1,15 @@
 ---
 interface Props {
   socialLinks?: { platform: string; url: string }[];
+  whatsappUrl?: string;
 }
 
 const {
+  whatsappUrl = 'https://wa.me/8119195252?text=Me%20interesa%20recibir%20más%20información%20de%20las%20licenciaturas',
   socialLinks = [
-    { platform: "facebook", url: "https://www.facebook.com/uadmonterrey" },
-    { platform: "instagram", url: "https://www.instagram.com/uadmonterrey" },
-    { platform: "whatsapp", url: "https://wa.me/8119195252" },
+    { platform: "facebook", url: "https://www.facebook.com/UDCampusMonterrey" },
+    { platform: "instagram", url: "https://www.instagram.com/udcampusmonterrey" },
+    { platform: "whatsapp", url: whatsappUrl },
   ],
 } = Astro.props;
 ---
