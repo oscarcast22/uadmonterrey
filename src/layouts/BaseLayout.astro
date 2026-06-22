@@ -36,6 +36,8 @@ const absoluteOGImage = new URL(ogImage, Astro.site).href;
     <meta name="theme-color" content={primaryColor} />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonicalURL.href} />
+    <link rel="alternate" hreflang="es-MX" href={canonicalURL.href} />
+    <link rel="alternate" hreflang="x-default" href={canonicalURL.href} />
 
     <link rel="preconnect" href="https://rsms.me/" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
@@ -58,42 +60,83 @@ const absoluteOGImage = new URL(ogImage, Astro.site).href;
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "EducationalOrganization",
-        "name": "Universidad Autónoma de Durango - Campus Monterrey",
-        "alternateName": "UAD Monterrey",
-        "url": "https://www.uadmonterrey.mx",
-        "logo": "https://www.uadmonterrey.mx/favicon.svg",
-        "description": "Universidad de educación superior en Monterrey. Ofrece licenciaturas en medicina, odontología y ciencias de la salud.",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Calle Padre Mier y Cuauhtémoc",
-          "addressLocality": "Monterrey",
-          "addressRegion": "Nuevo León",
-          "addressCountry": "MX"
-        },
-        "telephone": "+52-81-1919-5252",
-        "email": "admiciones@monterrey.uad.mx",
-        "sameAs": [],
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Programas Educativos",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "EducationalOccupationalProgram",
-                "name": "Licenciatura en Medicina"
-              }
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://www.uadmonterrey.mx/#website",
+            "url": "https://www.uadmonterrey.mx",
+            "name": "UAD Monterrey",
+            "description": "Universidad Autónoma de Durango Campus Monterrey - Excelencia académica en medicina, odontología y ciencias de la salud.",
+            "publisher": {
+              "@id": "https://www.uadmonterrey.mx/#organization"
             },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "EducationalOccupationalProgram",
-                "name": "Licenciatura en Odontología"
-              }
+            "inLanguage": "es-MX",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://www.uadmonterrey.mx/buscar?q={search_term_string}"
+              },
+              "query-input": "required name=search_term_string"
             }
-          ]
-        }
+          },
+          {
+            "@type": "EducationalOrganization",
+            "@id": "https://www.uadmonterrey.mx/#organization",
+            "name": "Universidad Autónoma de Durango - Campus Monterrey",
+            "alternateName": "UAD Monterrey",
+            "url": "https://www.uadmonterrey.mx",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://www.uadmonterrey.mx/favicon.svg",
+              "width": 512,
+              "height": 512
+            },
+            "description": "Universidad de educación superior en Monterrey. Ofrece licenciaturas en medicina, odontología y ciencias de la salud.",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Calle Padre Mier y Cuauhtémoc",
+              "addressLocality": "Monterrey",
+              "addressRegion": "Nuevo León",
+              "postalCode": "64000",
+              "addressCountry": "MX"
+            },
+            "telephone": "+52-81-1919-5252",
+            "email": "admiciones@monterrey.uad.mx",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+52-81-1919-5252",
+              "contactType": "admissions",
+              "email": "admiciones@monterrey.uad.mx",
+              "availableLanguage": ["Spanish"]
+            },
+            "sameAs": [
+              "https://www.facebook.com/uadmonterrey",
+              "https://www.instagram.com/uadmonterrey",
+              "https://wa.me/8119195252"
+            ],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Programas Educativos",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "EducationalOccupationalProgram",
+                    "name": "Licenciatura en Medicina"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "EducationalOccupationalProgram",
+                    "name": "Licenciatura en Odontología"
+                  }
+                }
+              ]
+            }
+          }
+        ]
       }
     </script>
 
