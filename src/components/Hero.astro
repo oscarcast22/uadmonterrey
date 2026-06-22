@@ -30,7 +30,7 @@ const {
       <div class="hero__bg">
         <Image
           src={backgroundImage}
-          alt=""
+          alt="Campus universitario UAD Monterrey"
           width={1920}
           height={800}
           densities={[1, 2]}
@@ -140,7 +140,6 @@ const {
     border-radius: 50px;
     padding: 0.5rem 2rem;
     box-shadow: 0 2px 12px var(--color-shadow);
-    opacity: 0;
     transform: translateY(-8px);
     will-change: opacity, transform;
   }
@@ -307,20 +306,15 @@ const {
   import gsap from "gsap";
 
   function initHeroAnimation() {
-    const branding = document.querySelector(".hero__branding");
     const title = document.querySelector(".hero__title");
     const subtitle = document.querySelector(".hero__subtitle");
     const links = document.querySelectorAll(".hero__link");
 
-    if (!branding || !title) return;
+    if (!title) return;
 
     const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
 
-    tl.to(branding, {
-      opacity: 1,
-      y: 0,
-      duration: 0.4,
-    }).to(
+    tl.to(
       title,
       {
         opacity: 1,
