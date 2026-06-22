@@ -103,12 +103,14 @@ const {
     border-radius: 50px;
     font-size: 0.95rem;
     font-weight: 600;
-    transition: all 0.25s ease;
     opacity: 0;
-    transform: translateY(15px);
   }
 
-  .cta-banner__btn:hover {
+  .cta-banner__btn.is-animated {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .cta-banner__btn.is-animated:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px var(--color-shadow);
   }
@@ -120,16 +122,22 @@ const {
   gsap.registerPlugin(ScrollTrigger);
 
   const banner = document.querySelector(".cta-banner");
-  if (banner) {
-    gsap.to(".cta-banner__btn", {
-      y: 0,
+  const btn = document.querySelector<HTMLElement>(".cta-banner__btn");
+  if (banner && btn) {
+    gsap.set(btn, { opacity: 0, y: 15 });
+    gsap.to(btn, {
       opacity: 1,
+      y: 0,
       duration: 0.6,
       ease: "power3.out",
+      clearProps: "transform",
       scrollTrigger: {
         trigger: ".cta-banner__content",
         start: "top 80%",
         once: true,
+      },
+      onComplete: () => {
+        btn.classList.add("is-animated");
       },
     });
   }
