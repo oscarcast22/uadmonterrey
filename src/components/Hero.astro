@@ -4,7 +4,7 @@ import { Image } from "astro:assets";
 interface HeroLink {
   text: string;
   href: string;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "whatsapp";
 }
 
 interface Props {
@@ -83,7 +83,9 @@ const {
                 "hero__link",
                 link.variant === "secondary"
                   ? "hero__link--secondary"
-                  : "hero__link--primary",
+                  : link.variant === "whatsapp"
+                    ? "hero__link--whatsapp"
+                    : "hero__link--primary",
               ]}
             >
               {link.text}
@@ -133,7 +135,7 @@ const {
 
   .hero__branding {
     position: absolute;
-    top: 1.25rem;
+    top: 1.5rem;
     left: 2rem;
     z-index: 1;
     background: var(--color-white);
@@ -241,13 +243,26 @@ const {
     box-shadow: 0 4px 15px var(--color-shadow);
   }
 
+  .hero__link--whatsapp {
+    background: color-mix(in srgb, var(--color-white) 90%, transparent);
+    color: var(--color-hero-btn);
+    border-color: var(--color-white);
+  }
+
+  .hero__link--whatsapp:hover {
+    background: var(--color-white);
+    color: color-mix(in srgb, var(--color-hero-btn) 80%, black);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px var(--color-shadow);
+  }
+
   @media (max-width: 768px) {
     .hero {
       max-height: var(--hero-height-mobile, min(100vh, 600px));
     }
 
     .hero__branding {
-      top: 1rem;
+      top: 1.25rem;
       left: 1.25rem;
       padding: 0.35rem 1.25rem;
     }
