@@ -219,13 +219,13 @@ const licenciaturas: Licenciatura[] = [
     gsap.set(cards, { y: 25 });
 
     ScrollTrigger.batch(cards, {
-      start: "top 90%",
+      start: "top 70%",
       once: true,
       onEnter: (batch) => {
         gsap.to(batch, {
           opacity: 1,
           y: 0,
-          duration: 0.5,
+          duration: 0.7,
           ease: "power3.out",
           stagger: 0.1,
           clearProps: "transform",
