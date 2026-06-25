@@ -28,7 +28,7 @@ export const areas: Area[] = [
     carreras: [
       { nombre: 'Ing. Biomédica', pdf: '/planes-de-estudio/PLAN_BIOMEDICA.jpg' },
       { nombre: 'Ing. Inteligencia Artificial y Seguridad de Software', pdf: '/planes-de-estudio/PLAN_ING-IA.jpg' },
-      { nombre: 'Ing. Seguridad Industrial y Laboral', pdf: '/planes-de-estudio/ingenieria/ing-seguridad-industrial.pdf' },
+      { nombre: 'Ing. Seguridad Industrial y Laboral', pdf: '/planes-de-estudio/PLAN_SEG INDUSTRIAL.jpg' },
       { nombre: 'Ing. Industrial', pdf: '/planes-de-estudio/PLAN_INGENIERIA INDUSTRIAL.jpg' },
     ],
   },
@@ -36,7 +36,7 @@ export const areas: Area[] = [
     nombre: 'Comercio',
     colorVar: '--color-comercio',
     carreras: [
-      { nombre: 'Administración de Negocios', pdf: '/planes-de-estudio/comercio/administracion-negocios.pdf' },
+      { nombre: 'Administración de Negocios', pdf: '/planes-de-estudio/PLAN_ADMINISTRACION.jpg' },
     ],
   },
   {
@@ -51,6 +51,7 @@ export const areas: Area[] = [
     colorVar: '--color-juridica',
     carreras: [
       { nombre: 'Criminología', pdf: '/planes-de-estudio/PLAN_CRIMINOLOGIA.jpg' },
+      { nombre: 'Derecho', pdf: '/planes-de-estudio/PLAN_DERECHO.jpg' },
     ],
   },
 ];
