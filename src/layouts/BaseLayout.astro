@@ -46,7 +46,7 @@ const absoluteOGImage = new URL(ogImage, Astro.site).href;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL.href} />
-    <meta property="og:site_name" content="UAD Monterrey" />
+    <meta property="og:site_name" content="UD Monterrey" />
     <meta property="og:image" content={absoluteOGImage} />
     <meta property="og:locale" content="es_MX" />
 
@@ -63,23 +63,23 @@ const absoluteOGImage = new URL(ogImage, Astro.site).href;
         "@graph": [
           {
             "@type": "WebSite",
-            "@id": "https://www.uadmonterrey.mx/#website",
-            "url": "https://www.uadmonterrey.mx",
-            "name": "UAD Monterrey",
-            "description": "Universidad Autónoma de Durango Campus Monterrey - Excelencia académica en medicina, odontología y ciencias de la salud.",
+            "@id": "https://monterrey.uadlobos.mx/#website",
+            "url": "https://monterrey.uadlobos.mx",
+            "name": "UD Monterrey",
+            "description": "Universidad de Durango Campus Monterrey - Excelencia académica en medicina, odontología y ciencias de la salud.",
             "publisher": {
-              "@id": "https://www.uadmonterrey.mx/#organization"
+"@id": "https://monterrey.uadlobos.mx/#organization"
             },
           },
           {
             "@type": "EducationalOrganization",
-            "@id": "https://www.uadmonterrey.mx/#organization",
-            "name": "Universidad Autónoma de Durango - Campus Monterrey",
-            "alternateName": "UAD Monterrey",
-            "url": "https://www.uadmonterrey.mx",
+            "@id": "https://monterrey.uadlobos.mx/#organization",
+            "name": "Universidad de Durango - Campus Monterrey",
+            "alternateName": "UD Monterrey",
+            "url": "https://monterrey.uadlobos.mx",
             "logo": {
               "@type": "ImageObject",
-              "url": "https://www.uadmonterrey.mx/favicon.svg",
+              "url": "https://monterrey.uadlobos.mx/favicon.svg",
               "width": 512,
               "height": 512
             },
