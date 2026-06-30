@@ -1,4 +1,4 @@
-# Guía para Agentes - UAD Monterrey
+# Guía para Agentes - UD Monterrey
 
 ## Comandos del Proyecto
 
@@ -87,7 +87,7 @@ const { title, variant = 'primary' } = Astro.props;
 Definidas en `src/styles/global.css`:
 
 ```css
---color-primary: #c10230;     /* Rojo UAD */
+--color-primary: #c10230;     /* Rojo UD */
 --color-primary-dark: #9a0226;
 --color-hero-btn: #c1272d;
 --color-dark: #1a1a1a;

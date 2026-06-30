@@ -1,4 +1,4 @@
-# Design System - UAD Monterrey
+# Design System - UD Monterrey
 
 ## Identidad Visual
 
@@ -7,7 +7,7 @@
 **Colores Principales**
 | Variable | Valor | Uso |
 |----------|-------|-----|
-| `--color-primary` | `#c10230` | Rojo UAD - Color institucional principal |
+| `--color-primary` | `#c10230` | Rojo UD - Color institucional principal |
 | `--color-primary-dark` | `#9a0226` | Rojo oscuro - Estados hover |
 | `--color-hero-btn` | `#c1272d` | Rojo botones Hero |
 
@@ -172,5 +172,5 @@ transition: all 0.2s ease;    /* Links, logo */
 
 ### Favicon
 
-- `favicon.svg`: SVG con logo UAD
+- `favicon.svg`: SVG con logo UD
 - `favicon.ico`: Fallback para navegadores antiguos
