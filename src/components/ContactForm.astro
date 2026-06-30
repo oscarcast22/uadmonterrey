@@ -86,6 +86,14 @@ const {
         <button type="submit" class="contact__submit">Enviar Información</button>
         <p class="contact__privacy">Al enviar, aceptas nuestro <a href="/aviso-de-privacidad">aviso de privacidad</a> y <a href="/terminos-de-servicio">términos de servicio</a>.</p>
       </form>
+      <div class="contact__success" role="status" aria-live="polite">
+        <svg class="contact__success-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle class="success-circle" cx="12" cy="12" r="10" />
+          <polyline class="success-check" points="8 12 11 15 16 9" />
+        </svg>
+        <h3 class="contact__success-title">¡Mensaje enviado!</h3>
+        <p class="contact__success-text">Nos pondremos en contacto contigo pronto.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -469,6 +477,74 @@ const {
     }
   }
 
+  /* Success inline */
+  .contact__success {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 1rem;
+    height: 100%;
+  }
+
+  .contact__success.is-visible {
+    display: flex;
+    animation: successFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .contact__success-icon {
+    color: #16a34a;
+    margin-bottom: 1rem;
+  }
+
+  .success-circle {
+    stroke-dasharray: 62.83;
+    stroke-dashoffset: 62.83;
+  }
+
+  .success-check {
+    stroke-dasharray: 12.17;
+    stroke-dashoffset: 12.17;
+  }
+
+  .contact__success.is-visible .success-circle {
+    animation: strokeDraw 0.6s cubic-bezier(0.65, 0, 0.35, 1) 0.1s forwards;
+  }
+
+  .contact__success.is-visible .success-check {
+    animation: strokeDraw 0.4s cubic-bezier(0.65, 0, 0.35, 1) 0.5s forwards;
+  }
+
+  .contact__success-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-gray-900);
+    margin-bottom: 0.5rem;
+    animation: successSlideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+  }
+
+  .contact__success-text {
+    font-size: 0.95rem;
+    color: var(--color-gray-600);
+    line-height: 1.4;
+    animation: successSlideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.3s both;
+  }
+
+  @keyframes successFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes strokeDraw {
+    to { stroke-dashoffset: 0; }
+  }
+
+  @keyframes successSlideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
   @media (max-width: 480px) {
     .contact {
       padding: 2.5rem 0.75rem;
@@ -667,5 +743,70 @@ const {
     document.addEventListener('DOMContentLoaded', initPhoneInput);
   } else {
     initPhoneInput();
+  }
+
+  function initFormSubmit(): void {
+    document.querySelectorAll<HTMLFormElement>('.contact__form').forEach((form) => {
+      form.addEventListener('submit', async (e: Event) => {
+        e.preventDefault();
+
+        const submitBtn = form.querySelector<HTMLButtonElement>('.contact__submit');
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Enviando...';
+        }
+
+        try {
+          const data = new FormData(form);
+          await fetch('/', { method: 'POST', body: data });
+
+          const wrapper = form.closest<HTMLElement>('.contact__form-wrapper');
+          if (wrapper) {
+            const height = wrapper.offsetHeight;
+            wrapper.style.height = `${height}px`;
+            form.style.display = 'none';
+            const success = wrapper.querySelector<HTMLElement>('.contact__success');
+            success?.classList.add('is-visible');
+          }
+        } catch {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Enviar Información';
+          }
+        }
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', initFormSubmit);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFormSubmit);
+  } else {
+    initFormSubmit();
+  }
+
+  // Testing: visit ?test=success to preview the success state
+  function initTestSuccess(): void {
+    if (new URLSearchParams(window.location.search).get('test') === 'success') {
+      document.querySelectorAll<HTMLElement>('.contact__form-wrapper').forEach((wrapper) => {
+        const form = wrapper.querySelector<HTMLFormElement>('.contact__form');
+        const success = wrapper.querySelector<HTMLElement>('.contact__success');
+        if (form && success) {
+          const height = wrapper.offsetHeight;
+          wrapper.style.height = `${height}px`;
+          form.style.display = 'none';
+          success.classList.add('is-visible');
+        }
+      });
+    }
+  }
+
+  document.addEventListener('astro:page-load', initTestSuccess);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTestSuccess);
+  } else {
+    initTestSuccess();
   }
 </script>
