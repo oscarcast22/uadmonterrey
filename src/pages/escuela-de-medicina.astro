@@ -23,58 +23,102 @@ const saludAreas = areas.filter((a) => a.nombre === 'Salud');
   <script is:inline type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "ItemList",
-      "name": "Licenciaturas en Ciencias de la Salud",
-      "description": "Programas de formación profesional en salud con enfoque humanista y tecnología de vanguardia.",
-      "url": "https://monterrey.uadlobos.mx/escuela-de-medicina",
-      "itemListElement": [
+      "@graph": [
         {
-          "@type": "ListItem",
-          "position": 1,
-          "item": {
-            "@type": "EducationalOccupationalProgram",
-            "name": "Licenciatura en Medicina"
-          }
+          "@type": "ItemList",
+          "name": "Licenciaturas en Ciencias de la Salud",
+          "description": "Programas de formación profesional en salud con enfoque humanista y tecnología de vanguardia.",
+          "url": "https://monterrey.uadlobos.mx/escuela-de-medicina",
+          "about": {
+            "@id": "https://monterrey.uadlobos.mx/#organization"
+          },
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "item": {
+                "@type": "EducationalOccupationalProgram",
+                "@id": "https://monterrey.uadlobos.mx/#programa-medicina",
+                "name": "Medicina",
+                "educationalLevel": "Licenciatura",
+                "url": "https://monterrey.uadlobos.mx/medicina",
+                "provider": { "@id": "https://monterrey.uadlobos.mx/#organization" }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "item": {
+                "@type": "EducationalOccupationalProgram",
+                "@id": "https://monterrey.uadlobos.mx/#programa-odontologia",
+                "name": "Odontología",
+                "educationalLevel": "Licenciatura",
+                "url": "https://monterrey.uadlobos.mx/odontologia",
+                "provider": { "@id": "https://monterrey.uadlobos.mx/#organization" }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "item": {
+                "@type": "EducationalOccupationalProgram",
+                "@id": "https://monterrey.uadlobos.mx/#programa-enfermeria",
+                "name": "Enfermería",
+                "educationalLevel": "Licenciatura",
+                "provider": { "@id": "https://monterrey.uadlobos.mx/#organization" }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 4,
+              "item": {
+                "@type": "EducationalOccupationalProgram",
+                "@id": "https://monterrey.uadlobos.mx/#programa-nutricion",
+                "name": "Nutrición",
+                "educationalLevel": "Licenciatura",
+                "provider": { "@id": "https://monterrey.uadlobos.mx/#organization" }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 5,
+              "item": {
+                "@type": "EducationalOccupationalProgram",
+                "@id": "https://monterrey.uadlobos.mx/#programa-fisioterapia",
+                "name": "Fisioterapia",
+                "educationalLevel": "Licenciatura",
+                "provider": { "@id": "https://monterrey.uadlobos.mx/#organization" }
+              }
+            },
+            {
+              "@type": "ListItem",
+              "position": 6,
+              "item": {
+                "@type": "EducationalOccupationalProgram",
+                "@id": "https://monterrey.uadlobos.mx/#programa-psicologia",
+                "name": "Psicología",
+                "educationalLevel": "Licenciatura",
+                "provider": { "@id": "https://monterrey.uadlobos.mx/#organization" }
+              }
+            }
+          ]
         },
         {
-          "@type": "ListItem",
-          "position": 2,
-          "item": {
-            "@type": "EducationalOccupationalProgram",
-            "name": "Licenciatura en Odontología"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "item": {
-            "@type": "EducationalOccupationalProgram",
-            "name": "Licenciatura en Enfermería"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 4,
-          "item": {
-            "@type": "EducationalOccupationalProgram",
-            "name": "Licenciatura en Nutrición"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 5,
-          "item": {
-            "@type": "EducationalOccupationalProgram",
-            "name": "Licenciatura en Fisioterapia"
-          }
-        },
-        {
-          "@type": "ListItem",
-          "position": 6,
-          "item": {
-            "@type": "EducationalOccupationalProgram",
-            "name": "Licenciatura en Psicología"
-          }
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Inicio",
+              "item": "https://monterrey.uadlobos.mx/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Escuela de Medicina",
+              "item": "https://monterrey.uadlobos.mx/escuela-de-medicina"
+            }
+          ]
         }
       ]
     }

@@ -23,17 +23,44 @@ const saludAreas = areas.filter((a) => a.nombre === 'Salud');
   <script is:inline type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "EducationalOccupationalProgram",
-      "name": "Licenciatura en Medicina",
-      "description": "Formamos líderes médicos con rigor científico, compasión humana y la capacidad técnica para transformar la salud global.",
-      "url": "https://monterrey.uadlobos.mx/medicina",
-      "provider": {
-        "@type": "EducationalOrganization",
-        "name": "Universidad de Durango - Campus Monterrey"
-      },
-      "educationalLevel": "Licenciatura",
-      "timeToComplete": "P6Y",
-      "occupationalCategory": "Médico Cirujano"
+      "@graph": [
+        {
+          "@type": "EducationalOccupationalProgram",
+          "@id": "https://monterrey.uadlobos.mx/#programa-medicina",
+          "name": "Medicina",
+          "description": "Formamos líderes médicos con rigor científico, compasión humana y la capacidad técnica para transformar la salud global.",
+          "url": "https://monterrey.uadlobos.mx/medicina",
+          "provider": {
+            "@id": "https://monterrey.uadlobos.mx/#organization"
+          },
+          "educationalLevel": "Licenciatura",
+          "timeToComplete": "P6Y",
+          "occupationalCategory": "Médico Cirujano"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Inicio",
+              "item": "https://monterrey.uadlobos.mx/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Escuela de Medicina",
+              "item": "https://monterrey.uadlobos.mx/escuela-de-medicina"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Licenciatura en Medicina",
+              "item": "https://monterrey.uadlobos.mx/medicina"
+            }
+          ]
+        }
+      ]
     }
   </script>
 
