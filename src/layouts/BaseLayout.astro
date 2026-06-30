@@ -1,6 +1,6 @@
 ---
-import '../styles/global.css';
-import '@fontsource-variable/montserrat/index.css';
+import "../styles/global.css";
+import "@fontsource-variable/montserrat/index.css";
 
 interface Props {
   title: string;
@@ -14,12 +14,12 @@ interface Props {
 
 const {
   title,
-  description = 'Universidad de Durango - Campus Monterrey',
-  primaryColor = '#c10230',
-  heroBtnColor = '#c1272d',
-  heroHeight = 'min(100vh, 800px)',
-  heroHeightMobile = 'min(100vh, 600px)',
-  ogImage = '/og-default.png',
+  description = "Universidad de Durango - Campus Monterrey",
+  primaryColor = "#c10230",
+  heroBtnColor = "#c1272d",
+  heroHeight = "min(100vh, 800px)",
+  heroHeightMobile = "min(100vh, 600px)",
+  ogImage = "/og-default.png",
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -27,7 +27,10 @@ const absoluteOGImage = new URL(ogImage, Astro.site).href;
 ---
 
 <!doctype html>
-<html lang="es" style={`--color-primary: ${primaryColor}; --color-hero-btn: ${heroBtnColor}; --hero-height: ${heroHeight}; --hero-height-mobile: ${heroHeightMobile};`}>
+<html
+  lang="es"
+  style={`--color-primary: ${primaryColor}; --color-hero-btn: ${heroBtnColor}; --hero-height: ${heroHeight}; --hero-height-mobile: ${heroHeightMobile};`}
+>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -68,8 +71,8 @@ const absoluteOGImage = new URL(ogImage, Astro.site).href;
             "name": "UD Monterrey",
             "description": "Universidad de Durango Campus Monterrey - Excelencia académica en medicina, odontología y ciencias de la salud.",
             "publisher": {
-"@id": "https://monterrey.uadlobos.mx/#organization"
-            },
+              "@id": "https://monterrey.uadlobos.mx/#organization"
+            }
           },
           {
             "@type": "EducationalOrganization",
@@ -93,13 +96,13 @@ const absoluteOGImage = new URL(ogImage, Astro.site).href;
               "addressCountry": "MX"
             },
             "telephone": "+52-81-1919-5252",
-            "email": "admiciones@monterrey.uad.mx",
+            "email": "mercadotecnia@monterrey.uad.mx",
             "contactPoint": {
               "@type": "ContactPoint",
               "telephone": "+52-81-1919-5252",
               "contactType": "admissions",
-              "email": "admiciones@monterrey.uad.mx",
-              "availableLanguage": ["Spanish"]
+              "email": "mercadotecnia@monterrey.uad.mx",
+              "availableLanguage": "es"
             },
             "sameAs": [
               "https://www.facebook.com/UDCampusMonterrey",
@@ -211,25 +214,43 @@ const absoluteOGImage = new URL(ogImage, Astro.site).href;
     <!-- Meta Pixel Code -->
     <script>
       // @ts-nocheck
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '1333737615376159');
-      fbq('track', 'PageView');
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js",
+      );
+      fbq("init", "1333737615376159");
+      fbq("track", "PageView");
     </script>
     <!-- End Meta Pixel Code -->
-
   </head>
   <body>
     <!-- Meta Pixel Code (noscript) -->
     <noscript>
-      <img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=1333737615376159&ev=PageView&noscript=1" />
+      <img
+        height="1"
+        width="1"
+        style="display:none"
+        src="https://www.facebook.com/tr?id=1333737615376159&ev=PageView&noscript=1"
+      />
     </noscript>
     <!-- End Meta Pixel Code -->
     <slot />
