@@ -24,4 +24,4 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-Sitemap: https://www.uadmonterrey.mx/sitemap-index.xml
+Sitemap: https://monterrey.uadlobos.mx/sitemap-index.xml

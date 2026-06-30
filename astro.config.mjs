@@ -6,7 +6,7 @@ import netlify from '@astrojs/netlify';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.uadmonterrey.mx',
+  site: 'https://monterrey.uadlobos.mx',
   integrations: [sitemap()],
   adapter: netlify({
     imageCDN: true,
