@@ -10,6 +10,7 @@ interface Props {
   areas?: Area[];
   hideProgram?: boolean;
   programValue?: string;
+  successColor?: string;
 }
 
 const {
@@ -20,6 +21,7 @@ const {
   areas = allAreas,
   hideProgram = false,
   programValue = '',
+  successColor = 'var(--color-primary)',
 } = Astro.props;
 ---
 
@@ -87,7 +89,7 @@ const {
         <p class="contact__privacy">Al enviar, aceptas nuestro <a href="/aviso-de-privacidad">aviso de privacidad</a> y <a href="/terminos-de-servicio">términos de servicio</a>.</p>
       </form>
       <div class="contact__success" role="status" aria-live="polite">
-        <svg class="contact__success-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="contact__success-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke={successColor} stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <circle class="success-circle" cx="12" cy="12" r="10" />
           <polyline class="success-check" points="8 12 11 15 16 9" />
         </svg>
@@ -494,7 +496,6 @@ const {
   }
 
   .contact__success-icon {
-    color: #16a34a;
     margin-bottom: 1rem;
   }
 
