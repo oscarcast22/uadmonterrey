@@ -66,7 +66,7 @@ const absoluteOGImage = new URL(ogImage, Astro.site).href;
 
     <title>{title}</title>
 
-    <script type="application/ld+json">
+    <script is:inline type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
@@ -270,7 +270,7 @@ const absoluteOGImage = new URL(ogImage, Astro.site).href;
     </script>
 
     <!-- Meta Pixel Code -->
-    <script>
+    <script is:inline>
       // @ts-nocheck
       !(function (f, b, e, v, n, t, s) {
         if (f.fbq) return;
@@ -299,6 +299,17 @@ const absoluteOGImage = new URL(ogImage, Astro.site).href;
       fbq("track", "PageView");
     </script>
     <!-- End Meta Pixel Code -->
+
+    <!-- Google tag (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=AW-704315861"></script>
+    <script>
+      // @ts-nocheck
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-704315861');
+    </script>
+    <!-- End Google tag -->
   </head>
   <body>
     <!-- Meta Pixel Code (noscript) -->
